@@ -1,0 +1,151 @@
+<apex:page controller="AttendeeTicketPDFController" renderAs="pdf" showHeader="false" sidebar="false" applyHtmlTag="false">
+   
+  <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="format-detection" content="telephone=no"/>
+        <title>DUBAI DREAMIN</title>
+         
+     
+
+    <style type="text/css">
+     @page { margin: 0.25in; size: 10in 10in; }
+
+      * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+    }
+    
+    ul {
+        margin: 0px !important; padding: 0px !important;
+    }
+    
+    ul li {
+        list-style: none;
+    }
+    
+     .qrcode span {
+        width: 100% !important;
+        padding: 0px;
+    }
+    
+    .qrcode span img {
+        width: 100% !important;
+    }
+
+        @media only screen and (max-width:767px) {
+            table { width: 100% !important;}
+        }
+    </style>
+    
+    </head>
+
+<body>
+     
+    <div class="wrapper">
+        
+        <!-- Main table -->
+  <table border="0" align="center" cellspacing="0" cellpadding="0" bgcolor="#fff" width="760" style="margin: auto; border-radius:20px; padding:20px 15px 15px; border:1px solid #2B76AF">
+    <tbody>
+    <tr>
+      <td>
+        <!-- Child table -->
+        <table border="0" cellspacing="0" cellpadding="0" style="color:#0f3462; font-family: sans-serif; width:100%">
+           <tbody>
+            <tr>
+               <td>
+               <table border="0" cellspacing="0" cellpadding="0" style="width:100%">
+                   <tbody>
+                       <tr>
+                           <td style="width:70%">
+                              <apex:image value="{!URLFOR($Resource.DubaiDreaminLogo)}" style="display:block;  " height="" width="250px"/>
+                           </td>
+                            <td  class="qrcode" style="width:15%">
+                            <apex:outputText value="{!attendeeTicket.qrCode}"  escape="false"/>
+
+                              </td>
+                       </tr>
+                   </tbody>
+               </table>
+               </td>
+        
+           
+                
+               
+             
+               
+            </tr>   
+            
+            <tr><td height="20"></td></tr>
+
+            <tr>
+              <td><p style="text-align: center; font-size:12px; color:#6B7878; font-weight:500; padding-bottom:10px">COMMUNITY- LED CONFERENCE UNITING PASSION, PURPOSE, AND SALESFORCE EXCELLENCE.</p></td>
+            </tr>
+
+
+            <tr>
+              <td>
+                <table border="0" cellspacing="0" cellpadding="0" style="border-radius:20px; border:1px dashed #2B76AF; width:100%"> 
+                  <tbody>
+                    <tr>
+                      <td scope="row"  width="190" style="padding: 10px 10px; border-right:1px dashed #EC5DA4; "><p style="font-size: 12px; color:#000; margin:0px; text-align:center">Invoice</p></td>
+                      <td scope="row"  width="190" style="padding: 10px 10px; border-right:1px dashed #EC5DA4; "><p style="font-size: 12px; color:#000; margin:0px; text-align:center">Name</p></td>
+                      <td scope="row"  width="190" style="padding: 10px 10px; border-right:1px dashed #EC5DA4; "><p style="font-size: 12px; color:#000; margin:0px; text-align:center">Location</p></td>
+                      <td scope="row"  width="190" style="padding: 10px 10px;"><p style="font-size: 12px; color:#000; margin:0px; text-align:center">Organizer</p></td>
+                    </tr> 
+
+
+                    <tr>
+                      <td scope="row"  width="190" style="padding: 10px 10px; border-right:1px dashed #EC5DA4; "><strong style=" font-weight:bold ;font-size: 12px; color:#000; margin:0px; text-align:center; display:block">{!attendeeTicket.ticketNumber}</strong></td>
+                      <td scope="row"  width="190" style="padding: 10px 10px; border-right:1px dashed #EC5DA4; "><strong style=" font-weight:bold ;font-size: 12px; color:#000; margin:0px; text-align:center; display:block">{!attendeeTicket.attendeeName}</strong></td>
+                      <td scope="row"  width="190" style="padding: 10px 10px; border-right:1px dashed #EC5DA4; "><strong style=" font-weight:bold ;font-size: 12px; color:#000; margin:0px; text-align:center; display:block">Dubai, UAE</strong></td>
+                      <td scope="row"  width="190" style="padding: 10px 10px;"><strong style=" font-weight:bold ;font-size: 12px; color:#000; margin:0px; text-align:center; display:block">Dubai Dreamin</strong></td>
+                    </tr>
+                    
+                    
+                    <tr>
+                      <td scope="row"  width="190" style="padding: 10px 10px; border-right:1px dashed #EC5DA4; "><p style="font-size: 12px; color:#000; margin:0px; text-align:center">Date</p></td>
+                      <td scope="row"  width="190" style="padding: 10px 10px; border-right:1px dashed #EC5DA4; "><p style="font-size: 12px; color:#000; margin:0px; text-align:center">Time</p></td>
+                      <td scope="row"  width="190" style="padding: 10px 10px; border-right:1px dashed #EC5DA4; "><p style="font-size: 12px; color:#000; margin:0px; text-align:center">Event</p></td> 
+                      <td scope="row"  width="190" style="padding: 10px 10px; border-right:1px dashed #EC5DA4; "><p style="font-size: 12px; color:#000; margin:0px; text-align:center">Charges (AED)</p></td> 
+
+                      </tr> 
+
+
+                    <tr>
+                      <td scope="row"  width="190" style="padding: 10px 10px; border-right:1px dashed #EC5DA4; "><strong style=" font-weight:bold ;font-size: 12px; color:#000; margin:0px; text-align:center; display:block">9-Nov</strong></td>
+                      <td scope="row"  width="190" style="padding: 10px 10px; border-right:1px dashed #EC5DA4; "><strong style=" font-weight:bold ;font-size: 12px; color:#000; margin:0px; text-align:center; display:block">09:00</strong></td>
+                      <td scope="row"  width="190" style="padding: 10px 10px; border-right:1px dashed #EC5DA4; "><strong style=" font-weight:bold ;font-size: 12px; color:#000; margin:0px; text-align:center; display:block">Dubai Dreamin</strong></td> 
+                      <td scope="row"  width="190" style="padding: 10px 10px; border-right:1px dashed #EC5DA4; "><strong style=" font-weight:bold ;font-size: 12px; color:#000; margin:0px; text-align:center; display:block">{!attendeeTicket.amount}</strong></td> 
+
+                      </tr>
+                  </tbody>
+                </table>
+              </td>
+              
+            </tr>
+            </tbody>
+        </table>
+        <!-- /Child table -->
+      </td>
+      
+    </tr>
+  </tbody>
+  </table>
+  <!-- / Main table -->
+
+    </div>
+
+
+
+
+    <script src="js/myscript.js"></script>  
+
+    
+
+
+
+   
+</body>
+</apex:page>

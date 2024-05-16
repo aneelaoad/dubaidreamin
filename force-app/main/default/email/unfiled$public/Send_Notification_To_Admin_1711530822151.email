@@ -1,0 +1,50 @@
+<html>
+ <head>
+  <title></title>
+ </head>
+ <body style="height: auto; min-height: auto;">
+  <table cellpadding="0" cellspacing="0" class="contentpageDefaultEmailTemplatePageTemplate" id="contentpage_emailTemplateBodyContent" style="background-color: #EAF3FE;" width="100%">
+   
+    <tr>
+     <td align="center" width="100%">
+      <table cellpadding="0" cellspacing="0" class="contentRoot" style="background-color: #EAF3FE;" width="600">
+       
+        <tr>
+         <td style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px; padding-right: 10px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img alt="email_logo.png" src="" style="max-width: 1288.2px; width: 210px; height: 177px;" title="email_logo.png" />
+          <table cellpadding="0" cellspacing="0" class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" width="100%">
+           
+            <tr valign="top">
+             <td class="columnCell" style="vertical-align: top;display: inline-block; float:left" width="100%">
+              <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+               
+                <tr>
+                 <td>
+                  <table cellpadding="0" cellspacing="0" id="contentRegion" style="width: 100%; border-collapse: collapse; word-break: break-word; font-size: 14px">
+                   
+                    <tr>
+                     <td style="font-family: Arial, Helvetica, sans-serif;padding-top: 10px;padding-left: 15px;"><p>Dear <strong>Maham Hassan</strong>,</p> <p>We are pleased to inform you that the sponsor lead Name<strong>&nbsp;{{{Recipient.LastName}}}</strong>&nbsp;has been successfully created. Your prompt attention to this matter is appreciated.</p> <p>Here are the details of the created lead:</p>
+                      <ul>
+                       <li>Lead Record ID:&nbsp;<strong>{{{Recipient.Id}}}</strong></li>
+                       <li><strong>Lead</strong> Name:&nbsp;<strong>{{{Recipient.LastName}}}</strong></li>
+                       <li>Sponsorship Level:&nbsp;<strong>{{{Recipient.Sponsorship_Level__c}}}</strong></li>
+                       <li>Company Name:&nbsp;<strong>{{{Recipient.Company}}}</strong></li>
+                       <li>Phone<strong>:{{{Recipient.Phone}}}</strong></li>
+                       <li>Email<strong>:{{{Recipient.Email}}}</strong></li>
+                      </ul> <p>Please review the creat lead for any additional follow-up actions required. If you have any questions or need further assistance, please don't hesitate to reach out.</p> <p>Thank you for your continued support.</p> <p>Best regards,<br /> <strong>Team Dubai Dreamin</strong></p></td>
+                    </tr>
+                   
+                  </table></td>
+                </tr>
+               
+              </table></td>
+            </tr>
+           
+          </table></td>
+        </tr>
+       
+      </table></td>
+    </tr>
+   
+  </table>
+ </body>
+</html>

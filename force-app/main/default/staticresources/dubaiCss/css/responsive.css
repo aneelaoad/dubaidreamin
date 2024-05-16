@@ -1,0 +1,448 @@
+@charset "utf-8";
+
+/* CSS Document */
+
+@media only screen and (min-width:1366px) and (max-width:1599px) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+@media only screen and (min-width:1280px) and (max-width:1365px) {
+
+    h1 { font-size: 42px; }
+    h2 { font-size: 36px; }
+    h3 { font-size: 30px;  }
+    h4 { font-size: 24px; }
+    h5 { font-size: 22px; }
+    h6 { font-size: 18px;  }
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1279px) {
+
+    .siteheader { display: none;}
+
+.registerProcess {
+    max-width: 350px; 
+}
+
+.mainContainer { 
+    padding-top: 180px;
+}
+
+    .becomeSpeaker_info { 
+        max-width: 700px; 
+    }
+    
+    .shapeFl { width: 120px;}
+    .shapeFr { width: 120px;}
+    .becomeSpeaker_info h2 { 
+        font-size: 24px;
+        padding-bottom: 15px;
+    }
+    
+    
+    .faqShape3 {
+        max-width: 100px; 
+        right: 20px;
+        top: 23px;
+    }
+    .faqShape2 { display: none;}
+    
+
+
+
+}
+
+@media only screen and (min-width:768px) and (max-width:1023px) {
+
+.siteheader { display: none;}
+
+.registerProcess {
+    max-width: 320px; 
+}
+
+.mainContainer { 
+    padding-top: 180px;
+}
+.ticketTable_row { 
+    padding: 12px 15px 10px 35px;
+}
+.becomeSpeaker_info { 
+    max-width: 550px; 
+}
+
+.shapeFl { width: 90px;}
+.shapeFr { width: 90px;}
+.becomeSpeaker_info h2 { 
+    font-size: 24px;
+    padding-bottom: 15px;
+}
+
+.faqShape3 {
+    max-width: 100px; 
+    right: 20px;
+    top: 23px;
+}
+.faqShape2 { display: none;}
+
+.ourSponsor_tittle h2 { 
+    font-size: 26px; 
+}
+
+
+.subcribe_email_input {
+    width: 62%;
+}
+
+.subcribe_email_input input { 
+    padding: 15px 12px;
+    font-size: 10px; 
+}
+.subcribe_email_sbmt {
+    width: 38%;
+}
+
+
+.subcribe_email_sbmt input { 
+    padding: 15px 10px; 
+    font-size: 10px; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+@media only screen and (max-width:767px) {
+
+ 
+ 
+
+.menuIcon {
+    width: 30px;
+    height: 20px;
+    right:18px;
+    top: 26px;
+    border-bottom: 2px solid #000;
+    border-top: 2px solid #000;
+    z-index: 2;transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    -webkit-transition: all .2s ease;
+}
+.menuIcon:after {
+    width: 80%;
+    height: 2px;
+    background: #000;
+    content: "";
+    display: block;
+    right: 0;
+    top: 7px
+}
+.menuIcon,
+.menuIcon:after {
+    position: absolute;
+    transition: all .4s ease
+}
+.menuIcon,
+.menu_clos {
+    display: block;
+    cursor: pointer
+}
+.menuIcon:hover:after {
+    right: 20%
+}
+ 
+
+ .closeNav {
+        display: block;
+        background: url(../images/closeNav.png) no-repeat;
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        color: #fff;
+        right: 18px;
+        top: 26px;
+        
+        background-size: 100%
+    }
+
+     
+
+
+
+
+
+.siteheader { display: none;}
+
+.faqShape2 { display: none;}
+.faqShape3 { display: none;}
+
+
+.banner_detail { position: static;}
+
+.banner_detail_info { padding: 20px 0px;}
+
+.mainContainer { 
+    padding-top: 100px;
+}
+.registerProcess span { max-width: 300px; margin: auto; margin-bottom: 25px;}
+
+.locationSchedule { 
+    position: static;  margin-bottom: 30px;
+}
+.earlySchedule_section { 
+    padding: 60px 0px 0px; 
+}
+
+.locationSchedule_data { 
+    border-radius: 20px;
+    padding: 15px 20px; 
+    flex-direction: column;
+}
+.location_info { padding: 15px 0px 15px 0px;
+    width: 100%;}
+
+.addseprator {
+    border-bottom: 2px dashed #D9A8C0; border-right: 0px;
+}
+
+.padd_l_40 { padding-left: 0px !important;}
+.padd_r_40 { padding-right: 0px !important;}
+
+.ticket_table { display: block; border-radius: 20px;}
+
+.ticket_table_fl { width: 100%;}
+.ticket_table_fr { width: 100%; border-top-right-radius: 0px;
+    border-bottom-right-radius: 20px; border-bottom-left-radius: 20px;}
+
+.ticketTable_row { display: block; padding: 30px 20px 20px;}
+.earlyRow_bg { border-top-left-radius: 20px;}
+.fullRow_bg { border-bottom-left-radius: 20px;}
+
+.ticketTable_rowText {
+    min-width: 100%;
+    max-width: 100%; padding-bottom: 20px;
+    text-align: center;
+}
+.vat_info {
+    min-width: 100%;
+    max-width: 100%;  padding-bottom: 20px;
+}
+.quantity_info  {min-width: 100%;
+    max-width: 100%;}
+
+.checkout_row {
+    display: block;  
+}
+.checkout_row p { padding: 0px 0px 20px; text-align: center; max-width: 100%;}
+ 
+.shapeFl { display: none;}
+.shapeFr { display: none;}
+
+
+.becomeSpeaker_section_detail { 
+    padding: 0px 0px 50px 0px;
+}
+
+.becomeSpeaker_info h2 { 
+    font-size: 24px; 
+}
+
+.faq_content h2 { 
+    font-size: 30px; 
+    padding-bottom: 30px;
+}
+.faq_content_info { 
+    display: block;
+}
+
+.faq_content_fl , .faq_content_fr { width:100%}
+
+.faq_content_fl { padding-right: 0px; padding-bottom: 30px;}
+
+.faqData {
+    padding: 15px 50px 15px 15px; 
+}
+.faqData strong { 
+    font-size: 14px; 
+}
+.ourSponsor_tittle h2 {
+    padding: 20px 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px; 
+    font-size: 24px; 
+    text-align: center;
+    line-height: 1.3;
+}
+.ourSponsor_detail { 
+    display: block;
+}
+
+.ourSponsor_detail_fl, .ourSponsor_detail_fr { width: 100%;}
+
+.ourSponsor_detail_fl { 
+    padding: 25px 20px 25px 20px;
+    border-bottom-left-radius: 0px;
+}
+
+.ourSponsor_detail_fl p { padding-bottom: 0px;}
+.btnSponsor { 
+    border-bottom-right-radius: 20px; 
+    transform: scale(1);
+    margin-top: 15px;
+    margin-left: 0px; 
+}
+
+.ourSponsor_detail_fr { padding-left: 0px;}
+.ticket_table_fl_tittle h3 { 
+    font-size: 30px; 
+    line-height: 1.2;
+}
+
+
+
+
+
+
+
+
+
+
+/* new pages css  */
+
+.sponsors_categories strong {     font-size: 26px; height: 60px;
+    width: 100%;}
+
+.innerPages_form .btnDefault { 
+    min-width: 100%;}
+
+.innerPages_form { 
+    padding: 30px 20px 0px;}
+
+.ticketProcess_checkoutform ul li {
+    padding: 12px 0px;
+    width: 100%;
+}
+.sponsor_section_tittle h2 {
+    font-size: 30px;}
+
+.sponsors_categories_list ul li span {
+    max-width: 185px; 
+}
+.customTittle p {
+    font-size: 16px; 
+}
+.customTittle h1 {
+    font-size: 26px;}
+.customInput_col strong { 
+    padding-bottom: 10px;}
+.onThankPage { 
+    min-height: 550px; 
+}
+
+
+
+.aboutUsTittle span {
+    max-width: 240px; 
+    margin-bottom: 25px;
+}
+
+.aboutUsTittle h1 { width: 30%;}
+
+.aboutUs_list_tittle h2 { 
+    font-size: 24px;}
+
+.aboutUs_list_tittle h2::after { right: 10px;}
+.aboutUs_list_tittle h2::before { left: 10px;}
+
+
+.aboutUs_list_info { display: block;}
+
+.aboutUs_list_profile { width: 100%; padding-bottom: 25px;}
+
+.aboutUs_list_profile span {
+    max-width: 220px; 
+}
+.aboutUs_list_description { width: 100%; padding: 0px;}
+
+.aboutUs_list_description p { font-size: 15px; text-align: center !important;}
+
+.aboutUs_list ul li {
+    padding: 30px 0px;
+}
+.footerUp_row {
+    display: block;
+}
+
+.footerUp_col { padding-bottom: 25px; width: 100% !important;}
+
+.footerUp_detail { 
+    padding: 40px 0px 0px;
+}
+.footerbottom p { 
+    font-size: 12px;
+}
+.footerLogo { 
+    padding-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+@media only screen and (min-width:480px) and (max-width:767px) {}

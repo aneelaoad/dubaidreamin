@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Refund_Ticket</name>
+        <label>Refund Ticket</label>
+        <locationX>182</locationX>
+        <locationY>134</locationY>
+        <actionName>DD_RefundTicketController</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>If_refund_is_successful</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>recordId.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>DD_RefundTicketController</nameSegment>
+        <outputParameters>
+            <assignToReference>refundmsg</assignToReference>
+            <name>message</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>transactionId</assignToReference>
+            <name>refundTransactionId</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>refundstatuscode</assignToReference>
+            <name>statusCode</name>
+        </outputParameters>
+        <versionSegment>1</versionSegment>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Email_to_Speakers</name>
+        <label>Send Email to Speakers</label>
+        <locationX>50</locationX>
+        <locationY>566</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>recordId.Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Confirmation: Refund Process Completed for Dubai Dreamin &apos;24</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>refundEmail</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientId</name>
+            <value>
+                <elementReference>recordId.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <versionSegment>1</versionSegment>
+    </actionCalls>
+    <apiVersion>60.0</apiVersion>
+    <decisions>
+        <name>If_refund_is_successful</name>
+        <label>If refund is successful</label>
+        <locationX>182</locationX>
+        <locationY>242</locationY>
+        <defaultConnector>
+            <targetReference>Copy_1_of_Refund_Result</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>refundstatuscode</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>200.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Refund_Result</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Refund Ticket Price {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Refund Ticket Price</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>Get_Transaction_Id</name>
+        <label>Get Transaction Id</label>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Send_Email_to_Speakers</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Speaker__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Refund_Transaction_Id__c</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <screens>
+        <name>Copy_1_of_Refund_Result</name>
+        <label>Refund Result</label>
+        <locationX>314</locationX>
+        <locationY>350</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Copy_1_of_refundResult</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 14px;&quot;&gt;{!refundmsg}&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Refund_Result</name>
+        <label>Refund Result</label>
+        <locationX>50</locationX>
+        <locationY>350</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Get_Transaction_Id</targetReference>
+        </connector>
+        <fields>
+            <name>refundResult</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 14px;&quot;&gt;{!refundmsg}&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Refund_Ticket</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>refundEmail</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;div class=&quot;wrapper&quot;&gt;
+        
+        &lt;!-- Main table --&gt;
+  &lt;table border=&quot;0&quot; align=&quot;center&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; bgcolor=&quot;#EAF3FE&quot; width=&quot;650&quot; style=&quot;margin: auto; border-radius:20px; padding:50px 25px 40px&quot;&gt;
+    &lt;tr&gt;
+      &lt;td&gt;
+        &lt;!-- Child table --&gt;
+        &lt;table border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; style=&quot;color:#0f3462; font-family: sans-serif;&quot;&gt;
+           
+          &lt;tr&gt;
+            &lt;td&gt;
+              &lt;img src=&quot;https://i.imgur.com/aK4EdrM.png&quot; height=&quot;50px&quot; width=&quot;280&quot; style=&quot;display:block; margin:auto;padding-bottom: 50px;height:auto;  &quot;&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;td style=&quot;&quot;&gt;
+              &lt;p style=&quot; padding-bottom: 5px ; font-size: 14px;&quot;&gt;Dear &lt;b&gt;{!recordId.Speaker_Name__c}!&lt;/b&gt;
+              &lt;/p&gt;
+              
+              &lt;p style=&quot; font-size: 14px; padding:0px&quot;&gt;I hope this message finds you well. We are writing to inform you that the refund process for your event ticket purchase for Dubai Dreamin &apos;24 has been successfully initiated, and you will receive your refunded amount within 5-10 days
+            &lt;/p&gt;
+            
+            &lt;p style=&quot; font-size: 14px; padding:0px&quot;&gt;
+              
+              &lt;b&gt;Here are the details of your refund:&lt;/b&gt;
+            &lt;/p&gt;
+            &lt;p style=&quot; font-size: 14px; padding:0px;&quot;&gt;&lt;strong&gt;Refund Amount:&lt;/strong&gt; &lt;span&gt;{!recordId.Ticket_Amount__c} &lt;/span&gt;&lt;/p&gt;     
+            &lt;p style=&quot; font-size: 14px; padding:0px;&quot;&gt;&lt;strong style=&quot;&quot;&gt;Payment Method: &lt;/strong&gt;&lt;span&gt;Original Payment Method&lt;/span&gt;&lt;/p&gt;
+              
+              &lt;p style=&quot; font-size: 14px; padding:0px;&quot;&gt;&lt;strong&gt;Transaction Id: &lt;/strong&gt;{!Get_Transaction_Id.Refund_Transaction_Id__c}&lt;/p&gt;
+              
+              
+               &lt;p style=&quot; font-size: 14px; padding:0px&quot;&gt;
+Please review the refund details provided above. If you have any questions or concerns regarding the refund process or the refund amount, please don&apos;t hesitate to reach out to us at info@dubaidreamin.com.
+            &lt;/p&gt;
+            
+            &lt;p style=&quot; font-size: 14px; padding:0px&quot;&gt;
+We sincerely appreciate your understanding and cooperation throughout this process. Your participation as a speaker is invaluable to us, and we are committed to ensuring a positive experience for you and all our speakers.
+            &lt;/p&gt;
+            
+            &lt;p style=&quot; font-size: 14px; padding:0px&quot;&gt;
+Thank you once again for your contribution to Dubai Dreamin &apos;24. We look forward to your participation and to delivering an outstanding event together.
+            &lt;/p&gt;
+              
+              
+
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          
+         
+          &lt;tr&gt;&lt;td height=&quot;20&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+
+          &lt;tr&gt;
+            &lt;td&gt;
+                &lt;p style=&quot;font-size: 14px; padding:0px&quot;&gt;&lt;b&gt;Best Regards,&lt;/b&gt;&lt;/p&gt;
+                &lt;p style=&quot;font-size: 14px; padding:0px&quot;&gt;Team Dubai Dreamin&lt;/p&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;  
+        &lt;/table&gt;
+        &lt;!-- /Child table --&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+  &lt;!-- / Main table --&gt;
+
+    &lt;/div&gt;</text>
+    </textTemplates>
+    <variables>
+        <name>recordId</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Speaker__c</objectType>
+    </variables>
+    <variables>
+        <name>refundmsg</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>refundstatuscode</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>transactionId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>All_Sessions_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>All Sessions Label</shortDescription>
+        <value>All Sessions</value>
+    </labels>
+    <labels>
+        <fullName>All_Speakers_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>All Speakers Label</shortDescription>
+        <value>All Speakers</value>
+    </labels>
+    <labels>
+        <fullName>Button_View_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button View Label</shortDescription>
+        <value>View</value>
+    </labels>
+    <labels>
+        <fullName>COPYRIGHT</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>COPYRIGHT</shortDescription>
+        <value>Copyright © | All rights reserved.</value>
+    </labels>
+    <labels>
+        <fullName>Company_Description_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Company Description Label</shortDescription>
+        <value>About Us</value>
+    </labels>
+    <labels>
+        <fullName>ContactUs_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ContactUs Label</shortDescription>
+        <value>Contact Us</value>
+    </labels>
+    <labels>
+        <fullName>FAQ_LABEL</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>FAQ LABEL</shortDescription>
+        <value>FAQ</value>
+    </labels>
+    <labels>
+        <fullName>RSVP_LABEL</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RSVP LABEL</shortDescription>
+        <value>RSVP</value>
+    </labels>
+    <labels>
+        <fullName>Session_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Session Label</shortDescription>
+        <value>Sessions</value>
+    </labels>
+    <labels>
+        <fullName>Speaker_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Speaker Label</shortDescription>
+        <value>Speakers</value>
+    </labels>
+</CustomLabels>

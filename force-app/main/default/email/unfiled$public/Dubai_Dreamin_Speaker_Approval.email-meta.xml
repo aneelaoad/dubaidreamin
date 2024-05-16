@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>Dubai_Dreamin_Letterhead</letterhead>
+    <name>Dubai Dreamin Speaker Approval</name>
+    <style>freeForm</style>
+    <subject>Approval Request for Speaker</subject>
+    <textOnly>A new Approval Request for the Speaker: {!Speaker__c.Speaker_Name__c} is pending. {!ApprovalRequest.External_URL}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

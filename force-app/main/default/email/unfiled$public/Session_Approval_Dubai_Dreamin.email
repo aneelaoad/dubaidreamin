@@ -1,0 +1,47 @@
+<div class="wrapper">
+        
+        <!-- Main table -->
+  <table border="0" align="center" cellspacing="0" cellpadding="0" bgcolor="#EAF3FE" width="650" style="margin: auto; border-radius:20px; padding:50px 25px 40px">
+    <tr>
+      <td>
+        <!-- Child table -->
+        <table border="0" cellspacing="0" cellpadding="0" style="color:#0f3462; font-family: sans-serif;width:100%">
+           
+          <tr>
+            <td>
+              <img src="https://i.imgur.com/aK4EdrM.png" height="50px" width="280" style="display:block; margin:auto;padding-bottom: 50px;height:auto;  ">
+            </td>
+          </tr>
+          <tr>
+            <td style="">
+              <p style=" padding-bottom: 5px ; font-size: 14px;">Dear Approver,
+              </p>
+              <p style=" font-size: 14px; padding:0px">An Approval Request for the Session: {!Session__c.Session_Title__c} is pending.
+            </p>
+              <p style=" font-size: 14px; padding:0px">Click to below take action:
+            </p>
+              <p style=" font-size: 14px; padding:0px"><a href="{!ApprovalRequest.External_URL}">{!ApprovalRequest.External_URL}</a> 
+            </p>
+            <p style=" font-size: 14px; padding:0px">
+            </p>
+              <!-- <p style=" font-size: 14px; padding:0px;"><span style="">You can now RSVP from the Dubai Dreamin site: </span><a href="https://cloud-1-1f-dev-ed.develop.my.site.com/dubaidreamin/s/" rel="noopener noreferrer" target="_blank" >https://cloud-1-1f-dev-ed.develop.my.site.com/dubaidreamin/s/</a></p> -->
+            </td>
+          </tr>
+          
+         
+          <tr><td height="20"></td></tr>
+
+          <tr>
+            <td>
+                <p style="font-size: 14px; padding:0px">Best Regards,</p>
+                <p style="font-size: 14px; padding:0px">Team Dubai Dreamin</p>
+            </td>
+          </tr>  
+        </table>
+        <!-- /Child table -->
+      </td>
+    </tr>
+  </table>
+  <!-- / Main table -->
+
+    </div>

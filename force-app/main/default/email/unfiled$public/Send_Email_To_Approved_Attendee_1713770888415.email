@@ -1,0 +1,73 @@
+<html>
+ <head>
+  <title></title>
+  <style type="text/css">@media only screen and (max-width:767px) {
+            table { width: 100% !important;}
+        }
+	</style>
+ </head>
+ <body style="height: auto; min-height: auto;">
+  <table cellpadding="0" cellspacing="0" class="contentpageDefaultEmailTemplatePageTemplate" id="contentpage_emailTemplateBodyContent" style="background-color: #EAF3FE; border-radius:20px;" width="100%">
+   
+    <tr>
+     <td align="center" width="100%">
+      <table cellpadding="0" cellspacing="0" class="contentRoot" style="background-color: #EAF3FE;" width="600">
+       
+        <tr>
+         <td style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px; padding-right: 10px;">
+          <table cellpadding="0" cellspacing="0" class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" width="100%">
+           
+            <tr valign="top">
+             <td class="columnCell" style="vertical-align: top;display: inline-block; float:left" width="100%">
+              <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+               
+                <tr>
+                 <td>
+                  <table cellpadding="0" cellspacing="0" id="contentRegion" style="width:100%; border-collapse: collapse; word-break:break-word;">
+                   
+                    <tr>
+                     <td align="Center"><img alt="email_logo" src="" style="max-width: 1288.2px; width: 194px; height: 163px;" title="email_logo" /></td>
+                    </tr>
+                   
+                  </table></td>
+                </tr>
+               
+              </table></td>
+            </tr>
+           
+          </table>
+          <table cellpadding="0" cellspacing="0" class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" width="100%">
+           
+            <tr valign="top">
+             <td class="columnCell" style="vertical-align: top;display: inline-block; float:left" width="100%">
+              <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+               
+                <tr>
+                 <td>
+                  <table cellpadding="0" cellspacing="0" id="contentRegion" style="width: 100%; border-collapse: collapse; word-break: break-word; font-size: 14px">
+                   
+                    <tr>
+                     <td style="font-family: Arial, Helvetica, sans-serif;padding-top: 10px;padding-left: 20px;"><p>Dear&nbsp;<strong>{{{Attendee__c.Attendee_Full_Name__c}}}</strong> ,</p> <p>We are delighted to inform you that your registration for the Dubai Dreamin '24 Event has been successfully confirmed. Thank you for choosing to join us on this journey of exploration and collaboration.</p> <p>Below are the event details:</p> <p><strong>Date</strong>: <strong>9th November, 2024</strong><br /> <br /> <strong>Location</strong>:<strong> Dubai, UAE</strong></p> <p>The Dubai Dreamin '24 Event promises to be an enriching and engaging experience, filled with insightful sessions, networking opportunities, and hands-on workshops tailored to empower you with the latest insights and tools in Salesforce technology.</p> <p>Your participation is integral to the success of this event, and we eagerly anticipate welcoming you to Dubai. Should you have any queries or require assistance leading up to the event, please feel free to reach out to our team at <strong><a target="_new">info@dubaidreamin.com</a></strong>. We are here to ensure your experience is seamless and enjoyable.</p> <p>Once again, thank you for choosing to be part of this exciting event. We look forward to seeing you there and sharing in this journey of learning and collaboration.</p> <p>Best ,<br /> <br /> <strong>Team Dubai Dreamin</strong></p></td>
+                    </tr>
+                   
+                  </table></td>
+                </tr>
+               
+              </table></td>
+            </tr>
+           
+          </table></td>
+        </tr>
+       
+      </table></td>
+    </tr>
+   
+  </table>
+  <div id="" style="left: 580.6px; top: 18px;">
+   &nbsp;
+  </div>
+  <div id="" style="left: 580.6px; top: 18px;">
+   &nbsp;
+  </div>
+ </body>
+</html>

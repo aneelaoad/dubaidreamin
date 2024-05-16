@@ -1,0 +1,538 @@
+<template>
+	<div class="wrapper">
+ 
+		<!-- header  -->
+		
+	   <main>
+		   <div class="mainContainer innerpages_container"> 
+
+			   <div class="innerPages speakerSponsor_bg">
+				   
+
+				<div class="auto_container">
+
+					   <div class="innerPages_detail">
+
+						   <!-- <div style="display: none;">
+							   <div class="customTittle">
+								   <h1>SPEAKERS INTEREST</h1>
+								   <p>At Dubai Dreamin, we curate a lineup of industry visionaries, Salesforce experts, and trailblazers who are shaping the future of technology. Our speakers bring a wealth of knowledge, experience, and inspiration to the stage, creating an immersive and transformative experience for our attendees.</p>
+							   </div>
+
+
+							   <div class="customTittle">
+								   <h1>PRE REQUEST FOR SPEAKERS</h1>
+								   <p>We are allowing Experts in our Salesforce eco-system to share their invaluable knowledge and experiences by having a Speaker Session of their own at Dubai Dreamin, speakers can submit their session request using speaker form and will be submitting their basic information such as Name, Job Title, Email, Phone and a Brief introduction of themselves. Secondly they have to provide the topic of their Session, Session Track, Description of the Session and additionally a speaker can also add a co speaker.</p>
+							   </div>
+
+
+
+							   <div class="innerPages_form onSpeaker_page">
+								   <div class="ticketProcess_checkoutform">
+
+
+
+
+
+
+
+
+
+
+									   <ul>
+										   <li>
+											   <div class="customInput_col">
+												   <strong>NAME</strong>
+												   <div class="customInput_field">
+													   <input type="text" value="" placeholder="Full Name" />
+												   </div>
+											   </div>
+										   </li>
+										   <li>
+											   <div class="customInput_col">
+												   <strong>TITLE</strong>
+												   <div class="customInput_field">
+													   <input type="text" value="" placeholder="Tite Name" />
+												   </div>
+											   </div>
+										   </li>
+
+
+										   <li>
+											   <div class="customInput_col">
+												   <strong>IMAGE URL</strong>
+												   <div class="customInput_field">
+													   <input type="text" value="" placeholder="@abc.com" />
+												   </div>
+											   </div>
+										   </li>
+										   <li>
+											   <div class="customInput_col">
+												   <strong>ROLE </strong>
+												   <div class="customInput_field">
+													   <input type="text" value="" placeholder="" />
+												   </div>
+											   </div>
+										   </li>
+
+
+										   <li>
+											   <div class="customInput_col">
+												   <strong>COMPANY /ORGANIZATION</strong>
+												   <div class="customInput_field">
+													   <input type="text" value="" placeholder="Name" />
+												   </div>
+											   </div>
+										   </li>
+										   <li>
+											   <div class="customInput_col">
+												   <strong>For Promotion </strong>
+												   <div class="customInput_field">
+													   <input type="text" value="" placeholder="https://facebook.com/xxxx" />
+												   </div>
+											   </div>
+
+											   <div class="socialIcon_urls">
+												   <a href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i>
+												   </a>
+												   <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i>
+												   </a>
+												   <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i>
+												   </a>
+												   <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i>
+												   </a>
+												   <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i>
+												   </a>
+											   </div>
+										   </li> 
+
+
+										   <li class="w-100">
+											   <div class="customInput_col">
+												   <strong> BIO </strong>
+												   <div class="customInput_field">
+													   <textarea placeholder="Speaker Professional Biography"></textarea>
+												   </div>
+											   </div>
+										   </li>
+
+
+										   <li class="">
+											   <div class="customInput_col">
+												   <strong> SESSION TITLE </strong>
+												   <div class="customInput_field">
+													   <input type="text" value="" placeholder="" />
+												   </div>
+											   </div>
+										   </li>
+										   <li class="">
+											   <div class="customInput_col">
+												   <strong> SESSION DESCRIPTION </strong>
+												   <div class="customInput_field">
+													   <input type="text" value="" placeholder="COMPANY LOGO.PNG           " />
+												   </div>
+											   </div>
+										   </li> 
+
+
+										   <li class="">
+											   <div class="customInput_col">
+												   <strong>SESSION DURATION </strong>
+												   <div class="customInput_field">
+													   <input type="text" value="" placeholder="COMPANY TAGLINE" />
+												   </div>
+											   </div>
+										   </li>
+										   <li class="">
+											   <div class="customInput_col">
+												   <strong>SESSION TRACK</strong>
+												   <div class="customInput_field">
+													   <select>
+														   <option>Data Cloud</option>
+														   <option>GER</option>
+														   <option>UK</option>
+													   </select>
+												   </div>
+											   </div>
+										   </li> 
+   
+
+
+										   <li class="w-100"> 
+
+											   <div class="customCheckbox">
+												   <label><input type="checkbox" />Add Co-Speaker</label>
+											   </div>
+										   </li>
+
+
+										   <li class="w-100">
+											   <div class="formSubmitBtn">
+												   <button class="btnDefault">SUBMIT</button>
+											   </div>
+										   </li>
+									   </ul>
+								   </div>
+							   </div>
+						   </div> -->
+
+
+						   <div class="speakerTille_new">
+							   <h2>Our Speakers</h2>
+						   </div>
+
+						   <div class="speakers_list">
+							   
+
+								<lightning-layout multiple-rows>
+
+
+										<!-- <lightning-layout-item size="12" small-device-size="12" medium-device-size="6"
+											large-device-size="4" key={speaker.Id}
+									
+											class="slds-m-around_medium slds-m-around_none"> -->
+											<!-- <ul> -->
+												<div class="styling-li">
+													
+									<template for:each={threespeakerInformation} for:item="speaker">
+										
+												<!-- <li key={speaker.Id}> -->
+													<div class="speaker_col_info" key={speaker.Id}>
+														<div class="speaker_col_info_avtar">
+															<a  class="avatarPic">
+																<template if:false={speaker.speakerImage}>
+																	<img src={profilePlaceholder} class="adjust"  alt="Speaker Profile Image" />
+					
+															</template>
+																	<template if:true={speaker.speakerImage}>
+																		<img src={speaker.speakerImage} class="adjust"  alt="Speaker Profile Image" />
+					
+															</template>
+																<!-- <img src="../resource/dubaiImage/images/profile_avatar.png" alt="#" /> -->
+															</a>
+															<a  class="speakerTittleT">{speaker.speakerName}</a>
+															<p class="speakerDesc">{speaker.speakerTitle}</p>
+														</div>
+
+														<div class="profile_social">
+															<a href={speaker.speakerSocialMedia} target="__blank"><img src="../resource/dubaiImage/images/linkedin_icon.png" alt="#" /></a>
+															<!-- <a href="#"><img src="../resource/dubaiImage/images/twitter_icon.png" alt="#" /></a> -->
+															<!-- <a href="#"><img src="../resource/dubaiImage/images/info_icon.png" alt="#" /></a> -->
+														</div>
+													</div>
+												<!-- </li> -->
+							</template>
+
+							
+						</div>
+
+											<!-- </ul> -->
+								<!-- </lightning-layout-item> -->
+						</lightning-layout>
+
+
+								   <!-- <li>
+									   <div class="speaker_col_info">
+										   <div class="speaker_col_info_avtar">
+											   <a href="#" class="avatarPic"><img src="../resource/dubaiImage/images/profile_avatar.png" alt="#" /></a>
+											   <a href="#" class="speakerTittleT">Maham Hassan</a>
+											   <p class="speakerDesc">Director at Cloud-1</p>
+										   </div>
+
+										   <div class="profile_social">
+											   <a href="#"><img src="../resource/dubaiImage/images/linkedin_icon.png" alt="#" /></a>
+											   <a href="#"><img src="../resource/dubaiImage/images/rss_icon.png" alt="#" /></a>
+											   <a href="#"><img src="../resource/dubaiImage/images/info_icon.png" alt="#" /></a>
+										   </div>
+									   </div>
+								   </li>
+
+
+								   <li>
+									   <div class="speaker_col_info">
+										   <div class="speaker_col_info_avtar">
+											   <a href="#" class="avatarPic"><img src="../resource/dubaiImage/images/profile_avatar.png" alt="#" /></a>
+											   <a href="#" class="speakerTittleT">Maham Hassan</a>
+											   <p class="speakerDesc">Director at Cloud-1</p>
+										   </div>
+
+										   <div class="profile_social">
+											   <a href="#"><img src="../resource/dubaiImage/images/linkedin_icon.png" alt="#" /></a>
+											   <a href="#"><img src="../resource/dubaiImage/images/rss_icon.png" alt="#" /></a>
+											   <a href="#"><img src="../resource/dubaiImage/images/info_icon.png" alt="#" /></a>
+										   </div>
+									   </div>
+								   </li> -->
+
+
+								   <!-- <li>
+									   <div class="speaker_col_info">
+										   <div class="speaker_col_info_avtar">
+											   <a href="#" class="avatarPic"><img src="images/profile_avatar.png" alt="#" /></a>
+											   <a href="#" class="speakerTittleT">Maham Hassan</a>
+											   <p class="speakerDesc">Director at Cloud-1</p>
+										   </div>
+
+										   <div class="profile_social">
+											   <a href="#"><img src="images/linkedin_icon.png" alt="#" /></a>
+											   <a href="#"><img src="images/rss_icon.png" alt="#" /></a>
+											   <a href="#"><img src="images/info_icon.png" alt="#" /></a>
+										   </div>
+									   </div>
+								   </li>
+
+
+								   <li>
+									   <div class="speaker_col_info">
+										   <div class="speaker_col_info_avtar">
+											   <a href="#" class="avatarPic"><img src="images/profile_avatar.png" alt="#" /></a>
+											   <a href="#" class="speakerTittleT">Maham Hassan</a>
+											   <p class="speakerDesc">Director at Cloud-1</p>
+										   </div>
+
+										   <div class="profile_social">
+											   <a href="#"><img src="images/linkedin_icon.png" alt="#" /></a>
+											   <a href="#"><img src="images/rss_icon.png" alt="#" /></a>
+											   <a href="#"><img src="images/info_icon.png" alt="#" /></a>
+										   </div>
+									   </div>
+								   </li>
+
+
+								   <li>
+									   <div class="speaker_col_info">
+										   <div class="speaker_col_info_avtar">
+											   <a href="#" class="avatarPic"><img src="images/profile_avatar.png" alt="#" /></a>
+											   <a href="#" class="speakerTittleT">Maham Hassan</a>
+											   <p class="speakerDesc">Director at Cloud-1</p>
+										   </div>
+
+										   <div class="profile_social">
+											   <a href="#"><img src="images/linkedin_icon.png" alt="#" /></a>
+											   <a href="#"><img src="images/rss_icon.png" alt="#" /></a>
+											   <a href="#"><img src="images/info_icon.png" alt="#" /></a>
+										   </div>
+									   </div>
+								   </li>
+
+
+								   <li>
+									   <div class="speaker_col_info">
+										   <div class="speaker_col_info_avtar">
+											   <a href="#" class="avatarPic"><img src="../resource/dubaiImage/images/profile_avatar.png" alt="#" /></a>
+											   <a href="#" class="speakerTittleT">Maham Hassan</a>
+											   <p class="speakerDesc">Director at Cloud-1</p>
+										   </div>
+
+										   <div class="profile_social">
+											   <a href="#"><img src="images/linkedin_icon.png" alt="#" /></a>
+											   <a href="#"><img src="images/rss_icon.png" alt="#" /></a>
+											   <a href="#"><img src="images/info_icon.png" alt="#" /></a>
+										   </div>
+									   </div>
+								   </li>
+
+
+								   <li>
+									   <div class="speaker_col_info">
+										   <div class="speaker_col_info_avtar">
+											   <a href="#" class="avatarPic"><img src="images/profile_avatar.png" alt="#" /></a>
+											   <a href="#" class="speakerTittleT">Maham Hassan</a>
+											   <p class="speakerDesc">Director at Cloud-1</p>
+										   </div>
+
+										   <div class="profile_social">
+											   <a href="#"><img src="images/linkedin_icon.png" alt="#" /></a>
+											   <a href="#"><img src="images/rss_icon.png" alt="#" /></a>
+											   <a href="#"><img src="images/info_icon.png" alt="#" /></a>
+										   </div>
+									   </div>
+								   </li>
+
+
+								   <li>
+									   <div class="speaker_col_info">
+										   <div class="speaker_col_info_avtar">
+											   <a href="#" class="avatarPic"><img src="images/profile_avatar.png" alt="#" /></a>
+											   <a href="#" class="speakerTittleT">Maham Hassan</a>
+											   <p class="speakerDesc">Director at Cloud-1</p>
+										   </div>
+
+										   <div class="profile_social">
+											   <a href="#"><img src="images/linkedin_icon.png" alt="#" /></a>
+											   <a href="#"><img src="images/rss_icon.png" alt="#" /></a>
+											   <a href="#"><img src="images/info_icon.png" alt="#" /></a>
+										   </div>
+									   </div>
+								   </li>
+
+
+								   <li>
+									   <div class="speaker_col_info">
+										   <div class="speaker_col_info_avtar">
+											   <a href="#" class="avatarPic"><img src="images/profile_avatar.png" alt="#" /></a>
+											   <a href="#" class="speakerTittleT">Maham Hassan</a>
+											   <p class="speakerDesc">Director at Cloud-1</p>
+										   </div>
+
+										   <div class="profile_social">
+											   <a href="#"><img src="images/linkedin_icon.png" alt="#" /></a>
+											   <a href="#"><img src="images/rss_icon.png" alt="#" /></a>
+											   <a href="#"><img src="images/info_icon.png" alt="#" /></a>
+										   </div>
+									   </div>
+								   </li> -->
+							   
+						   </div>
+
+
+						   <div class="aboutUsTittle onspeakerPage">
+							   <span><img src="../resource/dubaiImage/images/bannerLogo.png" alt="#" /></span>
+
+						   </div>
+					   </div>
+
+					</div>
+				   </div>
+			   <!-- </div>  -->
+
+
+
+		   </div>
+	   </main>
+
+
+	
+
+   </div>
+
+	<!-- <template if:true={selectedEventId}>
+		<div class="sectionSpeaker">
+
+
+			<div class="sectionSpeaker_inner">
+				<div class="sectionSpeaker_info">
+					<div class="sectionSpeaker_inner_info">
+						<h1 style="text-align: center; padding-bottom:25px">{speakerLabel}</h1>
+
+						<lightning-layout multiple-rows>
+
+
+							<template for:each={threespeakerInformation} for:item="speaker">
+								<lightning-layout-item size="12" small-device-size="12" medium-device-size="6"
+									large-device-size="4" key={speaker.Id}
+									class="slds-m-around_medium slds-m-around_none">
+
+									<div data-section="Speakers" class="speaker-card">
+
+										<div class="speaker-info">
+											<div class="speaker-overlay">
+												<button onclick={openModal} data-speakerid={speaker.speakerName} class="readbutton">
+                                            View More
+									    </button>
+											</div>
+											<template if:false={speaker.speakerImage}>
+												<img src={profilePlaceholder} alt="Speaker Profile Image" />
+
+                                        </template>
+												<template if:true={speaker.speakerImage}>
+													<img src={speaker.speakerImage} alt="Speaker Profile Image" />
+
+                                        </template>
+												
+										</div>
+									</div>
+								</lightning-layout-item>
+							</template>
+						</lightning-layout>
+						<button class="view-all" onclick={handleViewAllClick}> {buttonLabel} {allSpeakersLabel}</button>
+
+					</div>
+					
+					<c-popup-modal show-modal={showModal} onclosemodal={closeModal}>
+						<div class="speaker-details">
+							<div class="speaker-profile">
+								<img src={speakerImage} alt="Speaker Profile Image" />
+
+							</div>
+							<div class="speaker-information">
+								<h5>{speakerName}</h5>
+
+								<lightning-formatted-rich-text value={speakerDescription}>
+								</lightning-formatted-rich-text>
+								<div class="speaker-contact">
+
+									<div class="icon-p">
+										<div class="icon" style="margin-right:8px">
+											
+											📧
+										</div>
+										<p>
+											{speakerEmail}
+										</p>
+									</div>
+
+
+									<div class="icon-p" style="margin-left:10px">
+										<div class="icon" style="margin-right:8px">
+										
+											📞
+										</div>
+										<p>
+
+											{speakerPhone}
+										</p>
+									</div>
+
+
+								</div>
+							</div>
+
+						</div>
+
+					</c-popup-modal>
+
+
+				</div>
+			</div>
+
+
+			<template if:true={showAllSpeakers}>
+				<div class="slds-backdrop slds-backdrop_open"></div>
+				<div role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+					aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+					<div class="slds-modal__container">
+						<header class="slds-modal__header">
+							<button class="closeModal" title="Close" onclick={handleCloseModal}>
+                        ❌
+						</button>
+							<h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">{allSpeakersLabel}
+							</h2>
+						</header>
+						<div class="slds-modal__content slds-p-horizontal_medium speakerModel">
+							<template for:each={speakerInformation} for:item="speaker">
+								<div key={speaker.Id} data-section="Speakers" class="speaker-info">
+
+									<div class="card_info">
+										<img src={speaker.speakerImage} alt="Speaker Profile Image" />
+
+										<h3 class="heading">{speaker.speakerName}</h3>
+										<lightning-formatted-rich-text value={speaker.speakerInformation}>
+										</lightning-formatted-rich-text>
+										<div class="card-footer">
+										<p><strong>📧 </strong> {speaker.speakerEmail}</p>
+										<p><strong>📞 </strong>{speaker.speakerContactNumber}</p>
+										</div>
+									</div>
+
+								</div>
+
+							</template>
+						</div>
+					</div>
+				</div>
+			</template>
+
+		</div>
+	</template> -->
+</template>

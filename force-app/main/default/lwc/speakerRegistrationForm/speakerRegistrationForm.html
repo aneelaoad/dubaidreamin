@@ -1,0 +1,910 @@
+<template>
+	
+	<div class="speaker-registration-form">
+		
+
+			<!-- <button class="btnDefault"  onclick={openModal}><b>Become a Speaker</b></button>
+		<div class="modal" if:true={isOpen}>
+			<div class="modal-content">
+				
+	<div class="modal-body"> -->
+	
+		<!-- <button class="sticky" onclick={closeModal}>Close</button> -->
+	
+	<main>
+		<div class="mainContainer innerpages_container" > 
+
+			<div class="innerPages speakerSponsor_bg">
+				<!-- <button class="sticky btnDefault" onclick={closeModal}>Close</button> -->
+
+				<div class="auto_container">
+					<template if:false={submittedThankyou}>
+					<div class="innerPages_detail">
+
+						<div class="customTittle">
+							<h1>SPEAKERS INTEREST</h1>
+							<p>At Dubai Dreamin, we curate a lineup of industry visionaries, Salesforce experts, and trailblazers who are shaping the future of technology. Our speakers bring a wealth of knowledge, experience, and inspiration to the stage, creating an immersive and transformative experience for our attendees.</p>
+						</div>
+
+
+						<div class="customTittle">
+							<h1>Become Our Speaker</h1>
+							<p>We are allowing Experts in our Salesforce eco-system to share their invaluable knowledge and experiences by having a Speaker Session of their own at Dubai Dreamin, speakers can submit their session request using speaker form and will be submitting their basic information such as Name, Job Title, Email, Phone and a Brief introduction of themselves. Secondly they have to provide the topic of their Session, Session Track, Description of the Session and additionally a speaker can also add a co speaker.</p>
+						</div>
+
+
+
+						<div class="innerPages_form onSpeaker_page" >
+							<form onsubmit={handleSpeakerRegistration} >
+<!-- 
+								<div class="auto_container">
+									<lightning-progress-indicator
+									current-step={currentStep}
+									type="base"
+									variant="base"
+								  >
+									<lightning-progress-step
+										label="Step 1"
+										value="1"
+									></lightning-progress-step>
+									<lightning-progress-step
+										label="Step 2"
+										value="2"
+									></lightning-progress-step>
+									<lightning-progress-step
+										label="Step 3"
+										value="3"
+									></lightning-progress-step>
+								  </lightning-progress-indicator>
+							
+								  <lightning-record-edit-form >
+									<div class="stepOne">
+										<div class="ticketProcess_checkoutform">
+											<ul>
+												<li>
+													<div class="customInput_col">
+														<strong>NAME</strong>
+														<div class="customInput_field">
+										 <input type="text"  value={speakerName} onchange={handleSpeakerNameChange} required />
+														</div>
+													</div>
+												</li>
+
+												<li>
+													<div class="customInput_col">
+														<strong>EMAIL</strong>
+														<div class="customInput_field">
+										   <input type="email" required    value={speakerEmail}  onchange={handleSpeakerEmailChange} />
+														</div>
+													</div>
+												</li>
+												<li>
+													<div class="customInput_col">
+														<strong>TITLE</strong>
+														<div class="customInput_field">
+										   <input type="text" required    value={speakerTitle}  onchange={handleSpeakerTitleChange} />
+														</div>
+													</div>
+												</li>
+												<li>
+													<div class="customInput_col">
+														<strong>PHONE</strong>
+														<div class="customInput_field">
+										   <input type="number" required    value={speakerPhone}  onchange={handleSpeakerPhoneChange} />
+														</div>
+													</div>
+												</li>
+			
+												
+											</ul>
+										 </div>
+										
+										<lightning-button
+											class="slds-m-top_small"
+											label="Next"
+											onclick={goToStepTwo}
+										></lightning-button>
+									</div>
+									<div class="stepTwo slds-hide">
+										
+
+										<div class="ticketProcess_checkoutform">
+											<ul>
+										<li>
+											<div class="customInput_col">
+												<strong>PROFILE IMAGE</strong>
+												<div class="customInput_field">
+													<input type="file" 
+								
+								accept="image/*"
+								 onchange={openfileUploadSpeaker}></input>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="customInput_col">
+												<strong>ROLE </strong>
+												<div class="customInput_field">
+													<select   value={speakerRole} onchange={handleSpeakerRoleChange}>
+															<option value="Designer">Designer</option>
+															<option value="Business Analyst">Business Analyst</option>
+															<option value="Designer">Developer</option>
+															<option value="Developer">Manager</option>
+															<option value="Architect">Architect</option>
+															<option value="CEO">CEO</option>
+													</select>
+												</div>
+											</div>
+										</li>
+	
+	
+										<li>
+											<div class="customInput_col">
+												<strong>COMPANY /ORGANIZATION</strong>
+												<div class="customInput_field">
+							  <input type="text" required   value={companyName} onchange={handleCompanyNameChange} />
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="customInput_col">
+												<strong>LinkedIn URL</strong>
+												<div class="customInput_field">
+													<input type="url" value={speakerSocialMedia} onchange={handleSpeakerSocialMediaChange} placeholder="https://facebook.com/xxxx" />
+												</div>
+											</div>
+	
+											<div class="socialIcon_urls">
+												
+										
+											</div>
+										</li> 
+	
+	
+										<li class="w-100">
+											<div class="customInput_col">
+												<strong> BIO </strong>
+												<div class="customInput_field">
+													<textarea  value={speakerInformation}  onchange={handleSpeakerInformationChange} ></textarea>
+												
+												</div>
+											</div>
+										</li>
+										</ul>	
+										</div>
+	
+	
+										<lightning-button
+											class="slds-m-top_small"
+											label="Previous"
+											onclick={goBackToStepOne}
+										></lightning-button>
+										<lightning-button
+											class="slds-m-top_small"
+											label="Next"
+											onclick={goToStepThree}
+										></lightning-button>
+									</div>
+									<div class="stepThree slds-hide">
+										<div class="ticketProcess_checkoutform">
+											<ul>
+												
+									<li class="">
+										<div class="customInput_col">
+											<strong> SESSION TITLE </strong>
+											<div class="customInput_field">
+					            	  <input type="text"  required  value={sessionTitle} onchange={handleSessionTitleChange} />
+
+											</div>
+										</div>
+									</li>
+									 
+
+
+									
+									<li class="">
+										<div class="customInput_col">
+											<strong>SESSION TRACK</strong>
+											<div class="customInput_field">
+												<select   value={sessionTrack} onchange={handleSessionTrackChange}>
+														<option value="Sales Cloud">Sales Cloud</option>
+														<option value="Data Cloud">Data Cloud</option>
+														<option value="Service Cloud">Service Cloud</option>
+														<option value="Experience Cloud">Experience Cloud</option>
+														<option value="Marketing Cloud">Marketing Cloud</option>
+														<option value="Commerce Cloud">Commerce Cloud</option>
+														<option value="Analytics Cloud">Analytics Cloud</option>
+														<option value="Integration Cloud">Integration Cloud</option>
+														<option value="Manufacturing Cloud">Manufacturing Cloud</option>
+														<option value="Financial Services Cloud">Financial Services Cloud</option>
+														<option value="Education Services Cloud">Education Services Cloud</option>
+														<option value="Nonprofit Cloud">Nonprofit Cloud</option>
+														<option value="Health Cloud">Health Cloud</option>
+														<option value="Vaccine Cloud">Vaccine Cloud</option>
+												</select>
+												
+											</div>
+										</div>
+									</li>
+									<li  class="w-100">
+										<div class="customInput_col">
+											<strong> SESSION DESCRIPTION </strong>
+											<div class="customInput_field">
+												<textarea  value={sessionDescription}  onchange={handleSessionDescriptionChange} ></textarea>
+						
+											
+											</div>
+										</div>
+									</li> 
+
+
+
+									
+									<li class="">
+										<div class="customInput_col">
+											<div class="customInput_field">
+												<p>Want to Add Another Voice to the Session?</p>
+											</div>
+										</div>
+									</li>
+									<li class="">
+										<div class="customInput_col">
+											<div class="">
+												<template if:false={showCoSpeakerFields}>
+													<button type="reset" class="btnDefault btnSmallPink" onclick={toggleCoSpeakerFormVisibility}>Add A Co-Speaker</button>
+												</template>
+												<template if:true={showCoSpeakerFields}>
+													<button type="reset" class="btnDefault btnSmallPink" onclick={toggleCoSpeakerFormVisibility}>Remove Co-Speaker</button>
+												</template>
+											</div>
+										</div>
+									</li>
+
+									
+									<template if:true={showCoSpeakerFields}>
+										
+										<div class="ticketProcess_checkoutform transition">
+									<ul>
+										<li class="">
+										<div class="customInput_col">
+											<strong> NAME </strong>
+											<div class="customInput_field">
+							  				<input type="text" required value={coSpeakerName} onchange={handleCoSpeakerNameChange} />
+											</div>
+										</div>
+									    </li>
+										<li class="">
+										<div class="customInput_col">
+											<strong> EMAIL </strong>
+											<div class="customInput_field">
+												<input type="email" required   value={coSpeakerEmail}  onchange={handleCoSpeakerEmailChange} />
+
+											</div>
+										</div>
+									    </li>
+										<li class="">
+											<div class="customInput_col">
+												<strong> COMPANY/ORGANIZATION </strong>
+												<div class="customInput_field">
+												  <input type="text" required value={coSpeakerCompanyName} onchange={handleCoSpeakerCompanyNameChange} />
+												</div>
+											</div>
+											</li>
+											<li class="">
+												<div class="customInput_col">
+													<strong> PHONE </strong>
+													<div class="customInput_field">
+													  <input type="number" required value={coSpeakerPhone} onchange={handleCoSpeakerPhoneChange} />
+													</div>
+												</div>
+												</li>
+										<li class="">
+										<div class="customInput_col">
+											<strong> PROFILE IMAGE </strong>
+											<div class="customInput_field">
+												<input type="file" 
+												accept="image/*"
+												 onchange={openfileUploadCoSpeaker}></input>
+
+							  				
+											</div>
+										</div>
+									    </li>
+										<li class="">
+										<div class="customInput_col">
+											<strong> Role </strong>
+											<div class="customInput_field">
+												<select  value={coSpeakerRole} onchange={handleCoSpeakerRoleChange}>
+														<option value="Designer">Designer</option>
+														<option value="Business Analyst">Business Analyst</option>
+														<option value="Designer">Developer</option>
+														<option value="Developer">Manager</option>
+														<option value="Architect">Architect</option>
+														<option value="CEO">CEO</option>
+												</select>
+											</div>
+										</div>
+									    </li>
+								   </ul>
+								</div>
+								</template>
+												
+												</ul>
+												</div>
+										<lightning-button
+											class="slds-m-top_small"
+											label="Previous"
+											onclick={goBackToStepTwo}
+										></lightning-button>
+										<lightning-button
+											class="slds-m-top_small"
+											label="Save"
+											type="submit"
+											onclick={handleSave}
+										></lightning-button>
+									</div>
+									 </lightning-record-edit-form>
+								   </div> -->
+							<div class="ticketProcess_checkoutform">
+								<ul>
+									<li>
+										<div class="customInput_col">
+											<strong>NAME</strong>
+											<div class="customInput_field">
+						     <input type="text"  value={speakerName} onchange={handleSpeakerNameChange} required />
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="customInput_col">
+											<strong>EMAIL</strong>
+											<div class="customInput_field">
+						       <input type="email" required    value={speakerEmail}  onchange={handleSpeakerEmailChange} />
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="customInput_col">
+											<strong>TITLE</strong>
+											<div class="customInput_field">
+						       <input type="text" required    value={speakerTitle}  onchange={handleSpeakerTitleChange} />
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="customInput_col">
+											<strong>PHONE</strong>
+											<div class="customInput_field">
+						       <input type="text" required    value={speakerPhone}  onchange={handleSpeakerPhoneChange} />
+											</div>
+										</div>
+									</li>
+
+
+									<li>
+										<div class="customInput_col">
+											<strong>PROFILE IMAGE</strong>
+											<div class="customInput_field">
+												<!-- <input type="file" 
+													
+													accept="image/*"
+													onchange={openfileUploadSpeaker}></input> -->
+													<lightning-file-upload
+													
+													accept={acceptedFormats}
+													onuploadfinished={handleUploadSpeakerImageFinished}
+													>
+											</lightning-file-upload>
+											<span>{speakerFileName}</span>
+																	</div>
+																</div>
+															</li>
+															<li>
+										<div class="customInput_col">
+											<strong>Your intended audience? Select all that apply. * </strong>
+											<div class="customInput_field">
+												<select   value={speakerTarget} onchange={handleSpeakerTargetChange}>
+													<template for:each={speakerRoleOption} for:item="item">
+														<option key={item.value} value={item.value}>{item.label}</option>
+													</template>
+<!-- 													
+														<option value="Designer">Designer</option>
+														<option value="Business Analyst">Business Analyst</option>
+														<option value="Designer">Developer</option>
+														<option value="Developer">Manager</option>
+														<option value="Architect">Architect</option>
+														<option value="CEO">CEO</option> -->
+												</select>
+												<div class="slds-p-around_xx-small">
+
+													<template for:each={selectedSpeakerRoles} for:item="val">
+																				<lightning-pill key={val} label={val} name={val} onremove={handleRemove}></lightning-pill>
+				      		                     </template>
+									</div>    
+											</div>
+										</div>
+									</li>
+
+
+									<li>
+										<div class="customInput_col">
+											<strong>ROLE</strong>
+											<div class="customInput_field">
+												<select   value={speakerRole} onchange={handleSpeakerRoleChange}>
+													<template for:each={speakerRoleOption} for:item="item">
+														<option key={item.value} value={item.value}>{item.label}</option>
+													</template>
+<!-- 													
+														<option value="Designer">Designer</option>
+														<option value="Business Analyst">Business Analyst</option>
+														<option value="Designer">Developer</option>
+														<option value="Developer">Manager</option>
+														<option value="Architect">Architect</option>
+														<option value="CEO">CEO</option> -->
+												</select>
+											</div>
+										</div>
+									</li>
+									
+									<li>
+										<div class="customInput_col">
+											<strong>LinkedIn URL</strong>
+											<div class="customInput_field">
+												<input type="url" value={speakerSocialMedia} onchange={handleSpeakerSocialMediaChange} placeholder="https://www.linkedin.com/in/xxxxx" />
+											</div>
+										</div>
+
+										<div class="socialIcon_urls">
+											
+											<a href="https://www.linkedin.com/" target="__blank"><i class="fa fa-linkedin" ></i>
+											</a>
+
+											<!-- 
+											<a><i class="fas fa-hiking" ></i>
+											</a>
+											
+											<a><i class="fa fa-youtube-play" aria-hidden="true"></i>
+											</a>
+											<a><i class="fa fa-facebook" aria-hidden="true"></i>
+											</a>
+											<a><i class="fa fa-twitter" aria-hidden="true"></i>
+											</a>
+											<a><i class="fa fa-instagram" aria-hidden="true"></i>
+											</a> -->
+										</div>
+									</li> 
+
+									<li class="w-100">
+										<div class="customInput_col">
+											<strong>COMPANY /ORGANIZATION</strong>
+											<div class="customInput_field">
+						  <input type="text" required   value={companyName} onchange={handleCompanyNameChange} />
+											</div>
+										</div>
+									</li>
+									<li class="w-100">
+										<div class="customInput_col">
+											<strong> BIO </strong>
+											<div class="customInput_field">
+												<textarea  value={speakerInformation}  onchange={handleSpeakerInformationChange} ></textarea>
+											
+											</div>
+										</div>
+									</li>
+
+
+									<li class="">
+										<div class="customInput_col">
+											<strong> SESSION TITLE </strong>
+											<div class="customInput_field">
+					            	  <input type="text"  required  value={sessionTitle} onchange={handleSessionTitleChange} />
+
+											</div>
+										</div>
+									</li>
+									 
+
+
+									<li class="">
+										<div class="customInput_col">
+											<strong>SESSION TRACK</strong>
+											<div class="customInput_field">
+												
+												<select   value={sessionTrack} onchange={handleSessionTrackChange}>
+													<template for:each={sessionTrackOption} for:item="item">
+														<option key={item.value} value={item.value}>{item.label}</option>
+													</template>
+														
+												</select>
+
+												    
+				   
+												
+											</div>
+										</div>
+									</li>
+									<li  class="w-100">
+										<div class="customInput_col">
+											<strong> SESSION ABSTRACT </strong>
+											<div class="customInput_field">
+												<textarea  value={sessionDescription}  onchange={handleSessionDescriptionChange} ></textarea>
+						
+											
+											</div>
+										</div>
+									</li> 
+
+
+
+								
+									<li class="">
+										<div class="customInput_col">
+											<div class="customInput_field">
+												<p>Want to Add Another Voice to the Session?</p>
+											</div>
+										</div>
+									</li>
+									<li class="">
+										<div class="customInput_col">
+											<div class="">
+												<template if:false={showCoSpeakerFields}>
+													<button type="reset" class="btnDefault btnSmallPink" onclick={toggleCoSpeakerFormVisibility}>Add A Co-Speaker</button>
+												</template>
+												<template if:true={showCoSpeakerFields}>
+													<button type="reset" class="btnDefault btnSmallPink" onclick={toggleCoSpeakerFormVisibility}>Remove Co-Speaker</button>
+												</template>
+											</div>
+										</div>
+									</li>
+
+									
+									<template if:true={showCoSpeakerFields}>
+										
+										<div class="ticketProcess_checkoutform transition">
+									<ul>
+										<li class="">
+										<div class="customInput_col">
+											<strong> NAME </strong>
+											<div class="customInput_field">
+							  				<input type="text" required value={coSpeakerName} onchange={handleCoSpeakerNameChange} />
+											</div>
+										</div>
+									    </li>
+										<li class="">
+										<div class="customInput_col">
+											<strong> EMAIL </strong>
+											<div class="customInput_field">
+												<input type="email" required   value={coSpeakerEmail}  onchange={handleCoSpeakerEmailChange} />
+
+											</div>
+										</div>
+									    </li>
+										<li class="">
+											<div class="customInput_col">
+												<strong> COMPANY/ORGANIZATION </strong>
+												<div class="customInput_field">
+												  <input type="text" required value={coSpeakerCompanyName} onchange={handleCoSpeakerCompanyNameChange} />
+												</div>
+											</div>
+											</li>
+											<li class="">
+												<div class="customInput_col">
+													<strong> PHONE </strong>
+													<div class="customInput_field">
+													  <input type="text" required value={coSpeakerPhone} onchange={handleCoSpeakerPhoneChange} />
+													</div>
+												</div>
+												</li>
+										<li class="">
+										<div class="customInput_col">
+											<strong> PROFILE IMAGE </strong>
+											<div class="customInput_field">
+												<!-- <input type="file" 
+												accept="image/*"
+												 onchange={openfileUploadCoSpeaker}></input> -->
+
+												 <lightning-file-upload
+												 
+												 name="fileUploader"
+												 onuploadfinished={handleUploadCoSpeakerImageFinished}
+												 >
+										 </lightning-file-upload>
+										 <span>{coSpeakerFileName}</span>
+											</div>
+										</div>
+									    </li>
+										<li class="">
+										<div class="customInput_col">
+											<strong> ROLE </strong>
+											<div class="customInput_field">
+												<select  value={coSpeakerRole} onchange={handleCoSpeakerRoleChange}>
+													<template for:each={speakerRoleOption} for:item="item">
+														<option key={item.value} value={item.value}>{item.label}</option>
+													</template>
+														<!-- <option value="Designer">Designer</option>
+														<option value="Business Analyst">Business Analyst</option>
+														<option value="Designer">Developer</option>
+														<option value="Developer">Manager</option>
+														<option value="Architect">Architect</option>
+														<option value="CEO">CEO</option> -->
+												</select>
+											</div>
+										</div>
+									    </li>
+								   </ul>
+								</div>
+								</template>
+
+
+									<li class="w-100">
+										<div class="formSubmitBtn">
+											<button type="submit" class="btnDefault btnDefaultBlue">SUBMIT
+											
+											</button>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</form>
+
+						</div>
+
+
+					</div>
+				</template>
+				<template if:true={submittedThankyou}>
+					<div class="innerPages_detail">
+						<div class="sponsor_section_tittle onThankPage" >
+							<span><img src="../resource/dubaiImage/images/thankyou_img.png" alt="#" /></span>
+
+
+
+							<span><strong style="justify-content: center">Session Submitted Sucessfully! </strong></span>
+							<a>We Will Contact You Soon.</a>
+
+							<span><img src="../resource/dubaiImage/images/bannerLogo.png" alt="#" /></span>
+
+						</div>  
+
+
+					</div>
+				</template>
+				</div>
+			</div> 
+
+
+
+		</div>
+	</main>
+
+
+
+
+			<!-- <div class="scrollable-content">
+				<form onsubmit={handleSpeakerRegistration} >
+			   <div class="slds-p-around_medium" >
+
+
+				<div class="input-column">
+					<div class="slds-form-element">
+						<label class="slds-form-element__label fat-fonts" >NAME</label>
+						<div class="slds-form-element__control">
+						  <input type="text"  class="slds-input no-border fat-fonts" value={speakerName} onchange={handleSpeakerNameChange} required />
+						  
+						</div>
+					</div>
+				
+					<div class="slds-form-element">
+						<label class="slds-form-element__label fat-fonts" >TITLE</label>
+						<div class="slds-form-element__control">
+						  <input type="text"  required class="slds-input no-border fat-fonts"  value={speakerTitle} onchange={handleSpeakerTitleChange} />
+						 
+						</div>
+					</div>
+			
+					<div class="slds-form-element">
+						<label class="slds-form-element__label fat-fonts" >BIO</label>
+						<div class="slds-form-element__control">
+							<input type="text" required class="slds-input no-border fat-fonts" value={speakerInformation}  onchange={handleSpeakerInformationChange} />
+							
+						</div>
+					</div>
+					<div class="slds-form-element">
+						<label class="slds-form-element__label fat-fonts" >SESSION TITLE</label>
+						<div class="slds-form-element__control">
+						  <input type="text"  required class="slds-input no-border fat-fonts"  value={sessionTitle} onchange={handleSessionTitleChange} />
+					
+						</div>
+					</div>
+					<div class="slds-form-element">
+						<label class="slds-form-element__label fat-fonts" >SESSION TRACK</label>
+						<div class="slds-form-element__control">
+							<select  class="slds-input no-border fat-fonts picklist" value={sessionTrack} onchange={handleSessionTrackChange}>
+								<template for:each={sessionTrackOption} for:item="option">
+									<option key={option.value} value={option.value}>{option.label}</option>
+								</template>
+							</select>
+						</div>
+					</div>
+				
+
+				</div>
+
+				<div class="input-column">
+					<div class="slds-form-element">
+						<label class="slds-form-element__label fat-fonts" >ORGANIZATION</label>
+						<div class="slds-form-element__control">
+						  <input type="text" required  class="slds-input no-border fat-fonts"  value={companyName} onchange={handleCompanyNameChange} />
+						 
+						</div>
+					</div>
+					<div class="slds-form-element" >
+						<label class="slds-form-element__label fat-fonts" >ROLE</label>
+						<div class="slds-form-element__control">
+							<select  class="slds-input no-border fat-fonts picklist" value={speakerRole} onchange={handleSpeakerRoleChange}>
+								<template for:each={speakerRoleOption} for:item="option">
+									<option key={option.value} value={option.value}>{option.label}</option>
+								</template>
+							</select>
+							
+						</div>
+					</div>
+					<div class="slds-form-element">
+						<label class="slds-form-element__label fat-fonts" >Profile Picture</label>
+						<div class="slds-form-element__control">
+							<input type="file"  required
+							class="slds-input no-border fat-fonts slds-file-selector__input " 
+							accept="image/*"
+							 onchange={openfileUploadSpeaker}></input>
+						</div>
+					</div>
+					<div class="slds-form-element">
+						<label class="slds-form-element__label fat-fonts" >EMAIL</label>
+						<div class="slds-form-element__control">
+						  <input type="email" required  class="slds-input no-border fat-fonts"  value={speakerEmail}  onchange={handleSpeakerEmailChange} />
+					
+						
+						</div>
+					</div>
+				
+					<div class="slds-form-element">
+						<label class="slds-form-element__label fat-fonts" >SESSION DESCRIPTION</label>
+						<div class="slds-form-element__control">
+						  <input type="text" required  class="slds-input no-border fat-fonts"  value={sessionDescription}  onchange={handleSessionDescriptionChange} />
+						 
+						</div>
+					</div>
+					
+				</div>
+
+					
+				<div class="input-column centered">
+					<br>
+					<input type="checkbox"  checked={showCoSpeakerFields} onchange={handleCoSpeakerFormVisibility}><label class="fat-fonts" style="padding-bottom:3px;" >&emsp;Add a Co-Speaker</label>
+   					 
+				</div>
+				<template if:true={showCoSpeakerFields}>
+					
+				<div class="slds-p-around_medium " >
+					<div class="input-column">
+						<div class="slds-form-element">
+							<label class="slds-form-element__label fat-fonts" >NAME</label>
+							<div class="slds-form-element__control">
+							  <input type="text" required class="slds-input no-border fat-fonts" value={coSpeakerName} onchange={handleCoSpeakerNameChange} />
+							</div>
+						</div>
+						
+					
+						<div class="slds-form-element">
+							<label class="slds-form-element__label fat-fonts" >EMAIL</label>
+							<div class="slds-form-element__control">
+							  <input type="email" required  class="slds-input no-border fat-fonts"  value={coSpeakerEmail}  onchange={handleCoSpeakerEmailChange} />
+							</div>
+						</div>
+						
+	
+					</div>
+					<div class="input-column">
+						
+						<div class="slds-form-element" >
+							<label class="slds-form-element__label fat-fonts" >ROLE</label>
+							<div class="slds-form-element__control">
+								<select   class="slds-input no-border fat-fonts picklist" value={coSpeakerRole} onchange={handleCoSpeakerRoleChange}>
+									<template for:each={speakerRoleOption} for:item="option">
+										<option key={option.value} value={option.value}>{option.label}</option>
+									</template>
+								</select>
+							</div>
+						</div>
+						<div class="slds-form-element">
+							<label class="slds-form-element__label fat-fonts" >Profile Picture</label>
+							<div class="slds-form-element__control">
+								<input type="file"  required
+							class="slds-input no-border fat-fonts slds-file-selector__input " 
+							accept="image/*"
+							 onchange={openfileUploadCoSpeaker}></input>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				</template>
+				
+					
+				<div class="centered">
+					<input type="checkbox" checked={terms}  required><label for="agree" class="checkbox-label" style="font-weight:400">&emsp;I Agree to the Terms and Policies</label>
+    
+				</div>
+				<div class="slds-m-top_medium container">
+					<div class="registerbutton centered fat-fonts">
+                        <button type="submit">SUBMIT</button>
+                    </div>
+				
+				</div>
+			
+		</div>
+				</form>
+			
+
+		    </div>
+	  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+   </div>
+
+</div>
+</div>
+<div class="overlay" if:true={isOpen} onclick={closeModal}></div> -->
+
+
+
+
+
+
+<!-- <li class="w-100">
+										<div class="formSubmitBtn">
+											<button type="submit" class="btnDefault btnDefaultBlue">SUBMIT
+												<div class="demo-only" style="position:static;display: flex;justify-content: center;">
+												<template if:true={showSpinner}>
+													<div>
+													<div role="status" 
+													style="position:relative;margin-right: 15px;" 
+													class="slds-spinner slds-spinner_x-small slds-spinner_inverse">
+														<span class="slds-assistive-text">Loading</span>
+														<div class="slds-spinner__dot-a"></div>
+														<div class="slds-spinner__dot-b"></div>
+													</div>
+													</div>
+												</template>
+						
+												<div>SUBMIT</div>
+											  </div>
+											</button>
+										</div>
+									</li> -->
+	</div>
+</template>

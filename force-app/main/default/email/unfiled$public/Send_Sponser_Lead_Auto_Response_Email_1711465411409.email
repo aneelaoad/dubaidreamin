@@ -1,0 +1,107 @@
+<html>
+<head>
+	<title></title>
+	<style type="text/css">@media only screen and (max-width:767px) {
+            table { width: 100% !important;}
+        }
+	</style>
+</head>
+<body style="height: auto; min-height: auto;">
+<table cellpadding="0" cellspacing="0" class="contentpageDefaultEmailTemplatePageTemplate" id="contentpage_emailTemplateBodyContent" style="background-color: #EAF3FE; border-radius:20px; margin:auto; padding:25px" width="600">
+	
+		<tr>
+			<td align="center" width="100%">
+			<table cellpadding="0" cellspacing="0" class="contentRoot" style="background-color: #EAF3FE; width:100%">
+				
+					<tr>
+						<td style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px; padding-right: 10px;">
+						<table cellpadding="0" cellspacing="0" class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" width="100%">
+							
+								<tr valign="top">
+									<td class="columnCell" style="vertical-align: top;display: inline-block; float:left" width="100%">
+									<table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+										
+											<tr>
+												<td>
+												<table cellpadding="0" cellspacing="0" id="contentRegion" style="width:100%; border-collapse: collapse; word-break:break-word;">
+													
+														<tr>
+															<td align="Center" style="padding-bottom:25px"><img alt="email_logo" src="https://cloud-1-d.file.force.com/file-asset-public/email_logo?oid=00D2w00000Gm5DU" style="max-width: 1288.2px; width: 194px; height: 163px;" title="email_logo" /></td>
+														</tr>
+													
+												</table>
+												</td>
+											</tr>
+										
+									</table>
+									</td>
+								</tr>
+							
+						</table>
+
+						<table cellpadding="0" cellspacing="0" class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" width="100%">
+							
+								<tr valign="top">
+									<td class="columnCell" style="vertical-align: top;display: inline-block; float:left" width="100%">
+									<table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+										
+											<tr>
+												<td>
+												<table border="0" cellpadding="0" cellspacing="0" style="color:#0f3462; font-family: sans-serif;">
+													
+														<tr>
+															<td style="">
+															<p style="padding-bottom: 5px ; font-size: 14px;">Hi <b>{{{Recipient.LastName}}}!</b></p>
+
+															<p style="font-size: 14px; padding:0px">We invite you to join us as a sponsor for Dubai Dreamin '24, our most anticipated gathering of Trailblazers across the UAE!.</p>
+
+															<p style="font-size: 14px; padding:0px; margin:0px;"><b style="font-size: 14px;">Date:</b> Saturday 9th November 2024</p>
+
+															<p style="font-size: 14px; padding-bottom:10px; margin:0px"><b style="font-size: 14px;">Location:</b>&nbsp;Dubai, UAE</p>
+
+															<p style="font-size: 14px; padding:0px">If you'd like to learn more about our event and what's in store for sponsors this year, we encourage you to see the sponsorship package document attached here with.</p>
+
+															<p style="font-size: 14px; padding:0px; margin-bottom:15px">Please note that sponsorship places are limited, and we will be in touch shortly after having received and assessed your application.</p>
+															</td>
+														</tr>
+														<tr>
+															<td>
+															<p style="font-size: 14px; margin-bottom:15px">Thank you for considering this opportunity, and we look forward to welcoming you as a sponsor at Dubai Dreamin '24.</p>
+															</td>
+														</tr>
+														<tr>
+															<td>
+															<p style="font-size: 14px; margin-bottom:25px">Please don’t hesitate to contact <b>info@dubaidreamin.com </b> if you have any questions.</p>
+															</td>
+														</tr>
+														<tr>
+															<td>
+															<p style="font-size: 14px; padding:0px;margin-bottom:5px"><b>Best,</b></p>
+
+															<p style="font-size: 14px; padding-bottom:20px"><b>Team Dubai Dreamin</b></p>
+															</td>
+														</tr>
+													
+												</table>
+												</td>
+											</tr>
+										
+									</table>
+									</td>
+								</tr>
+							
+						</table>
+						</td>
+					</tr>
+				
+			</table>
+			</td>
+		</tr>
+	
+</table>
+
+<div id="" style="left: 580.6px; top: 18px;">&nbsp;</div>
+
+<div id="" style="left: 580.6px; top: 18px;">&nbsp;</div>
+</body>
+</html>

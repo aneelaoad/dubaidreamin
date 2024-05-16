@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Send Sponser Lead Auto Response Email</name>
+    <style>none</style>
+    <subject>Thank You for Your Sponsorship Request</subject>
+    <textOnly>Dear {{{Recipient.LastName}}},
+
+Thank you for your interest in sponsoring Dubai Dreamin Event. We appreciate your commitment to supporting our cause and helping us achieve our goals.
+
+Your sponsorship request has been successfully received. Our team is currently reviewing it and will get back to you as soon a with further details regarding your sponsorship application.
+
+In the meantime, if you have any questions or require additional information, please feel free to contact us at mhassan@cloud-1.co.
+
+Thank you once again for considering sponsorship with us. We look forward to the possibility of collaborating with you and creating a mutually beneficial partnership.
+
+Best regards,
+
+Maham Hassan</textOnly>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

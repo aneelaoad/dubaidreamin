@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+      <types>
+      
+        <members>Event__c</members>
+        <members>Speaker__c</members>
+        <members>Sponsor__c</members>
+        <members>Attendee__c</members>
+        <members>Question__c</members>
+        <members>Question_Response__c</members>
+        <members>Session__c</members>
+        <members>Question_Option__c</members>
+        <members>Session_Speaker__c</members>
+        <members>Event_Speaker__c</members>
+        <members>FAQ__c</members>
+        <members>Navigation_Control__c</members>
+        <members>Ticket__c</members>
+        <members>Ticket_Configuration__mdt	</members>
+        <members>Timeline__c	</members>
+     <!--   <members>Discount_percentage__mdt	</members>  -->
+         <members>DD_Promotion_Codes__mdt</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+     <members>Event__c</members>
+        <members>Speaker__c</members>
+        <members>Sponsor__c</members>
+        <members>Attendee__c</members>
+        <members>Question__c</members>
+        <members>Question_Response__c</members>
+        <members>Session__c</members>
+        <members>Question_Option__c</members>
+        <members>Session_Speaker__c</members>
+        <members>Event_Speaker__c</members>
+        <members>FAQ__c</members>
+        <members>Navigation_Control__c</members>
+        <members>Ticket__c</members>
+        <members>Timeline__c</members>
+    <name>CustomTab</name>
+ </types>
+    <types>
+        <members>Event__c-Event Layout</members>
+        <members>FAQ__c-FAQ Layout</members>
+        <members>Speaker__c-Speaker Layout</members>
+        <members>Sponsor__c-Sponsor Layout</members>
+        <members>Ticket__c-Ticket Layout</members>
+        <members>Question__c-Question Layout</members>
+        <members>Question_Response__c-Question Response Layout</members>
+        <members>Question_Response__c-Question Response Layout</members>
+        <members>Attendee__c-Attendee Layout</members>
+        <members>Session_Speaker__c-Session Speaker Layout</members>
+        <members>Event_Speaker__c-Event Speaker Layout</members>
+        <members>Navigation_Control__c-Navigation Control Layout</members>
+        <members>Navigation_Control__c-Navigation Footer Menu</members>
+       
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>Navigation_Control__c.Footer_Navigation</members>
+        <members>Navigation_Control__c.Header_Navigation</members>
+        <name>RecordType</name>
+    </types>
+  
+	 <types>
+        <members>Account.Logo__c</members>
+        <members>Account.About_Us_Description__c</members>
+        <members>Event__c.Event_Description__c</members>
+        <members>Event__c.Event_End_Date_and_Time__c</members>
+        <members>Event__c.Event_Start_Date_and_Time__c</members>
+        <members>Event__c.Event_Charges__c</members>
+        <members>Event__c.Event_Organizer_Company__c</members>
+        <members>Event__c.Event_Type__c</members>
+        <members>Event__c.Event_Address__c	</members>
+        <members>Event__c.Event_Total_Duration__c</members>
+        <members>Event__c.Event_Organizer__c</members>
+        <members>Event__c.Event_Title__c</members>
+        <members>Question__c.Question__c</members>
+        <members>Question__c.Event__c</members>
+        <members>Question__c.Priority__c</members>
+        <members>Question__c.Question_Type__c</members>
+        <members>Question_Response__c.Question_Name__c</members>
+        <members>Question_Response__c.Response__c</members>
+        <members>Question_Response__c.Attendee__c</members>  
+        <members>Question_Option__c.Option__c</members>
+        <members>Question_Option__c.Question__c</members>
+        <members>Session__c.Event__c</members>
+        <members>Session__c.Session_Approval_Status__c</members>
+        <members>Session__c.Session_Title__c</members>
+        <members>Session__c.Session_Start_Date__c</members>
+        <members>Session__c.Session_End_Date__c</members>
+        <members>Session__c.Session_Start_Time__c</members>
+        <members>Session__c.Session_End_Time__c</members>
+        <members>Session__c.Session_Duration__c</members>
+        <members>Session__c.Session_Description__c</members>
+        <members>Session__c.Session_Track__c</members>
+        <members>Session__c.Speaker_Email__c</members>
+        <members>Session__c.Speaker_Name__c</members>
+        <members>Session__c.Level__c</members>
+        <members>Speaker__c.Speaker_Name__c</members>
+        <members>Speaker__c.Speaker_Profile_Image__c</members>
+        <members>Speaker__c.Speaker_Information__c</members>
+        <members>Speaker__c.Speaker_Role__c</members>
+        <members>Speaker__c.Speaker_Social_Media__c</members>
+        <members>Speaker__c.Email__c</members>
+        <members>Speaker__c.Phone_Number__c</members>
+        <members>Speaker__c.Company_Name__c</members>
+        <members>Speaker__c.Speaker_Title__c</members>
+        <members>Speaker__c.Parent_Speaker__c</members>
+        <members>Speaker__c.Speaker_Type__c</members>
+        <members>Speaker__c.Content_Id__c</members>
+        <members>Speaker__c.Attendee__c</members>
+        <members>Speaker__c.Attendee__c</members>
+        <members>Speaker__c.Ticket_Amount__c</members>
+        <members>Speaker__c.Approval_Status__c</members>
+        <members>Speaker__c.Payment_Status__c</members>
+        <members>Speaker__c.Refund_Transaction_Id__c</members>
+        <members>Speaker__c.Content_Id__c</members>
+        <members>Speaker__c.Submission_Received__c</members>
+        <members>Sponsor__c.Event__c</members>
+        <members>Sponsor__c.Sponsor__c</members>
+        <members>Sponsor__c.Industry__c</members>
+        <members>Sponsor__c.Sponsor_Image__c</members>
+        <members>Sponsor__c.Sponsor_Phone__c</members>
+        <members>Sponsor__c.Sponsor_Title__c</members>
+        <members>Sponsor__c.Sponsorship_Level__c</members>
+        <members>Sponsor__c.Email__c</members>
+        <members>Sponsor__c.Company_Type__c</members>
+        <members>Sponsor__c.Company_Name__c</members>
+        <members>Sponsor__c.Company_HQ__c</members>
+        <members>Sponsor__c.Company_Description__c</members>
+        <members>Sponsor__c.Company_Website__c</members>
+        <members>Attendee__c.Attendee__c</members>
+        <members>Attendee__c.Event__c</members>
+        <members>Attendee__c.Event__c</members>
+        <members>Attendee__c.Amount__c</members>
+        <members>Attendee__c.Address__c</members>
+        <members>Attendee__c.Phone__c</members>
+        <members>Attendee__c.Session_Interest__c</members>
+        <members>Attendee__c.Company_Name__c</members>
+        <members>Attendee__c.City__c</members>
+        <members>Attendee__c.Food_Preference__c</members>
+        <members>Attendee__c.Tshirt_Size__c</members>
+        <members>Attendee__c.Company_Size__c</members>
+        <members>Attendee__c.Designation__c</members>
+        <members>Attendee__c.Message__c</members>
+        <members>Attendee__c.Payment_Verified__c</members>
+        <members>Attendee__c.Attendee_Full_Name__c</members>
+        <members>Attendee__c.Agreed_to_Terms_Conditions__c</members>
+        <members>Attendee__c.isPrimaryAttendee__c</members>
+        <members>Attendee__c.Primary_Attendee__c</members>
+        <members>Event_Speaker__c.Event__c</members>
+        <members>Event_Speaker__c.Speaker__c</members>
+        <members>Event_Speaker__c.Duplication_Record_Chk__c</members>
+        <members>Session_Speaker__c.Is_Primary_Speaker__c</members>
+         <members>Session_Speaker__c.Speaker_Name__c</members>
+        <members>Session_Speaker__c.Session__c</members>
+        <members>Session_Speaker__c.Speaker__c</members>
+        <members>Session_Speaker__c.Duplication_Record_Chk__c</members>
+        <members>FAQ__c.Question__c</members>
+        <members>FAQ__c.Answer__c</members>
+        <members>Navigation_Control__c.Menu_Item_Name__c</members>
+        <members>Navigation_Control__c.Order__c</members>
+        <members>Navigation_Control__c.is_Visible__c</members>
+        <members>Navigation_Control__c.Event__c</members>
+        <members>Navigation_Control__c.Link_URL__c</members>
+        <members>Navigation_Control__c.Social_Media_Type__c</members>
+        <members>Navigation_Control__c.Section__c</members>
+        <members>Case.Event__c</members>
+        <members>Case.Event_Id__c</members>
+        <members>Ticket__c.Description__c</members>	
+        <members>Ticket__c.Ticket_Price__c</members>	
+        <members>Ticket__c.Title__c</members>	
+        <members>Ticket__c.Primary_Attendee_Ticket__c</members>	
+        <members>Ticket__c.Vat__c</members>	       
+        <members>Ticket__c.Total_Amount__c</members>	       
+        <members>Ticket__c.SubTotal_Amount__c</members>	       
+        <members>Lead.Sponsorship_Level__c</members>
+        <members>Lead.Company_HQ__c</members>
+        <members>Lead.Company_Type__c</members>
+        <members>Lead.Event_Id__c</members>
+        <members>Lead.Company_Image_Url__c</members>
+       <members>Lead.Content_Id__c</members> 
+       <members>Discount_Percentage__mdt.Percentage__c</members>
+       <members>Discount_Percentage__mdt.Status__c</members>
+       <members>Timeline__c.Date__c</members>
+        <members>DD_Promotion_Codes__mdt.Coupon_Id__c</members>
+        <members>DD_Promotion_Codes__mdt.Promo_Code__c</members>
+        <members>DD_Promotion_Codes__mdt.Activation_Date__c</members>
+        <members>DD_Promotion_Codes__mdt.Expiry_Date__c</members>
+       <name>CustomField</name>
+    </types>
+   <!-- <types>
+
+    <members>DubaiDreamin</members>
+        <name>CustomSite</name>
+    </types>
+    
+
+    <types>
+
+        <members>cbDubaiDreamin</members>
+        <name>NetworkBranding</name>
+        </types>
+     <types>
+
+        <members>DubaiDreamin</members>
+        <name>Network</name>
+        </types>
+    <types>
+        <members>DubaiDreamin1</members>
+        <name>ExperienceBundle</name>
+    </types>
+  -->
+       <types>
+
+        <members>DubaiDreaminThemeLayout</members>
+        <members>SponsorsBlankLayout </members>
+        <members>SpeakersBlankLayout </members>
+        <members>ThankYouTemplate </members>
+        <members>dubaiAboutUsLayout </members>
+        <members>ThankyouTemplateAttendee </members>
+        <members>ThankyouTemplateAttendeeRegistered</members>
+        <members>thankyouSpeakerBlankLayout</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+     <types>
+        <members>CommunitiesLanding</members>
+        <members>TicketPage</members>
+        <name>ApexPage</name>
+    </types>
+
+      <types>
+        <members>dubaiNavbar</members>
+        <members>dubaiApprovedSponsors</members>
+        <members>dubaiAboutUs</members>
+        <members>dubaiNavbar</members>
+        <members>dubaiEventHighlights</members>
+        <members>dubaiBannerImage</members>
+        <members>dubaiContactUs</members>   
+        <members>dubaiFAQs</members>
+        <members>dubaiFooter</members>
+      <!--  <members>dubaiRSVPSection</members> -->
+        <members>dubaiThankYou</members>
+        <members>dubaiSessionFilter</members>
+        <members>expandableComponent</members>
+        <members>speakerRegistrationForm</members>
+        <members>speakerSection</members>
+        <members>sponsorRegistrationForm</members>
+        <members>setSessionTime</members>
+        <members>sponsorForm</members>
+        <members>thankYouSponsor</members>
+    <!--    <members>comingSoonSpeaker</members>  -->
+        <members>dubaiAboutUs</members>
+        <members>dd_RSVP_Section</members> 
+      	<name>LightningComponentBundle</name>
+	</types>
+    
+    <types>
+		<members>CommunitiesLandingController</members>
+		<members>CommunitiesLandingControllerTest</members>
+        <members>NavigationControlSelector</members>
+        <members>NavigationbarController</members>
+        <members>DenormalizedNavigationControl</members>
+        <members>DenormalizedEvent</members>
+        <members>EventSelector</members>
+        <members>EventController</members>
+        <members>FAQsSelector</members>
+        <members>DenormalizedFAQs</members>
+        <members>FAQsController</members>
+        <members>EventSpeakerSelector</members>
+        <members>DenormalizedSpeaker</members>
+        <members>SpeakerController</members>
+        <members>DenormalizedSession</members>
+        <members>SessionSelector</members>
+        <members>SessionSpeakerSelector</members>
+        <members>SessionController</members>
+        <members>FooterController</members>
+        <members>DenormalizedFooter</members>
+        <members>AttendeeRegistrationController</members>
+        <members>DenormalizedQuestion</members>
+        <members>QuestionSelector</members>
+        <members>DenormalizedResponse</members>
+        <members>DenormalizedAttendee</members>
+        <members>DenormalizedSponsor</members>
+        <members>SponsorController</members>
+         <members>SponsorSelector</members>
+        <members>CompanyInformationController</members>
+         <members>DenormalizedCompanyInformation</members>
+         <members>CompanyInformationSelector</members>
+        <members>ContactSelector</members>
+        <members>DenormalizedOption</members>
+        <members>EventTestDataFactory</members>
+        <members>DubaiRSVPController</members>
+        <members>DubaiRSVPControllerTest</members>
+        <members>AttendeeTicketPDFController</members>
+        <members>AttendeeTicketPDFControllerTest</members>
+        <members>EventControllerTest</members>
+        <members>NavigationControlSelectorTest</members>
+        <members>NavigationbarControllerTest</members>
+        <members>FAQsControllerTest</members>
+        <members>AttendeeRegistrationControllerTest</members>
+        <members>SessionControllerTest</members>
+        <members>SpeakerControllerTest</members>
+        <members> SponsorControllerTest</members>
+       <members> CompanyInformationControllerTest</members>
+        <members>FooterControllerTest</members>
+        <members>ContentDocumentUtils</members>
+        <members>ContentVersionSelector</members>
+        <members>DenormalizedTicket</members>
+        <members>PicklistMetadataController</members>
+        <members>PaymentController</members>
+        <members>PaymentControllerTest</members>
+        <members>SpeakerHandler</members>
+        <members>Price</members>
+        <members>PriceTest</members>
+        <members>PriceParser</members>
+        <members>ApprovalProcessController</members>
+        <members>ApprovalProcessSelector</members>
+        <members>CreateTicketFromStripeEventTest</members>
+        <members>ContentController</members>
+        <members>EmailUniquenessClass</members>
+        <members>TriggerHandler</members>
+        <members>TriggerHandler_Test</members>
+        <members>SessionSpeakerApprovalTriggerHandler</members>
+        <members>ContentController</members>
+        <members>voucherCodeGen</members>
+        <members>EmailUniquenessClass</members>
+        <members>SpeakerTriggerHandler</members>
+        <members>SpeakerTriggerHandlerTest</members>
+        <members>TicketSelector</members>
+        <members>AttendeeSelector</members>
+        <members>SpeakerSelector</members>
+        <members>StripeEventSelector</members>
+        <members>DD_RefundTicketController</members>
+        <members>DD_RefundTicketControllerTest</members>
+        <members>EmailController</members>
+        <members>EmailControllerTest</members>
+        <members>DenormalizedPromotionCode</members>
+
+
+		<name>ApexClass</name>
+	</types>
+     <types>
+		<members>CreateTicketFromStripeEvent</members>
+        <members>SessionSpeakerApprovalTrigger</members>
+        <members>LeadAfterInsertTrigger</members>
+        <members>SpeakerTrigger</members>
+		<name>ApexTrigger</name>
+	</types>
+     
+      <types>
+        <members>Stripe_Named_Credential</members>
+        <name>NamedCredential</name>
+    </types>
+
+    <types>
+        <members>Stripe_External_Credential</members>
+        <name>ExternalCredential</name>
+    </types>
+    
+     <types>
+		<members>EventIDMessageChannel</members>
+		<name>LightningMessageChannel</name>
+	</types>
+    
+        <types>
+		<members>Event_Record_Page</members>
+		<members>AttendEase_UtilityBar</members>
+		<members>Speaker_Record_Page</members>
+		<members>Session_Record_Page</members>
+		<members>Approval_Request_Record_Page1</members>
+		<name>FlexiPage</name>
+	</types>
+
+    
+    <types>
+        <members>FAQ_LABEL</members>
+        <members>RSVP_LABEL</members> 
+        <members>COPYRIGHT</members>
+        <members>All_Sessions_Label</members>
+        <members>All_Speakers_Label</members> 
+        <members>Button_View_Label</members>
+        <members>Company_Description_Label</members>
+        <members>ContactUs_Label</members>
+        <members>Session_Label</members> 
+        <members>Speaker_Label</members>
+      <!--  <members>FavIcon</members> -->
+        
+        
+        <name>CustomLabel</name>
+    </types>
+    <types>
+        <members>Ticket_Configuration.EARLY_BIRD</members>
+        <members>Ticket_Configuration.FULL_TICKET</members>
+        <members>DD_Promotion_Codes.Dubai_World_Tour</members>
+        <members>DD_Promotion_Codes.WorldTourPromo_2</members>
+        <name>CustomMetadata</name>
+
+    </types>
+
+
+    <types> 
+
+      <members>unfiled$public/Send_Notification_To_Admin_1711530822151</members>
+      <members>unfiled$public/Send_Sponser_Lead_Auto_Response_Email_1711465411409</members>
+      <members>unfiled$public/Dubai_Dreamin_Speaker_Approval</members>
+      <members>unfiled$public/Send_Email_To_Approved_Attendee_1713770888415</members>
+      <members>unfiled$public/Session_Approval_Dubai_Dreamin</members>
+       <name>EmailTemplate</name>
+    </types>
+    <types> 
+
+      <members>*</members>
+  
+       <name>ContentAsset</name>
+    </types>
+    
+
+  
+
+
+    <types>
+       
+        <members>SOCIAL_ICONS</members>
+        <members>DUBAI_ASSET</members>
+        <members>SO_ICONS</members>
+         <members>DubaiDreaminLogo</members>
+         <members>dubaibanner</members>
+         <members>DESIGN_IMAGES</members>
+         <members>dubaiCss</members>
+         <members>dubaiJs</members>
+         <members>dubaiImage</members>
+     <!--    <members>comingSoonSpeakers</members> -->
+        <members>FavIcon</members>
+         <members>SNA_DubaiDreamin1_sf_default_cdn_gqpqs</members>
+         <members>BannerLogo</members>
+         <members>FavIcon</members>
+         <members>SNA_DubaiDreamin1_sf_default_cdn_gqpqs</members>
+         <members>BannerLogo</members>
+      <!--   <members>ComingSoonSpeakers</members>  -->
+        <name>StaticResource</name>
+    </types>
+   
+     <types>
+      <!--  <members>Prevention_Duplication_of_Speaker_From_Same_Session</members>-->
+         <members>Send_Approved_or_Rejected_Email_to_Speaker</members>
+         <members>Lead_Converstion</members>
+         <members>Get_Speaker_Name</members>
+         <members>Refund_Ticket_Price</members>
+       <!--  <members>Send_Speaker_Submission_Emails</members>  -->
+         <members>Speaker_Submission_Email</members>
+         <members>Send_Speaker_Submission_Opening_Emails</members>
+         <members>Send_Speaker_Submission_Reminder_Emails</members>
+         <members>Send_Speaker_Submission_Post_Deadline_Emails</members>
+       <name>Flow</name>
+    </types>
+
+ <!--<types>
+        <members>Speaker__c.Speaker_Duplicity</members>
+       <name>DuplicateRule</name>
+    </types>
+     <types>
+        <members>Speaker__c.Speaker_Duplicity_matching_rule</members>
+       <name>MatchingRule</name>
+    </types>
+    -->
+     <types>
+        <members>Lead.Standard</members>
+       <name>AssignmentRule</name>
+    </types>
+    
+    <types>
+        <members>AttendEase</members>
+        <name>CustomApplication</name>
+    </types>
+   <types>
+        <members>DubaiDreamin Profile</members>
+        <name>Profile</name>
+    </types>
+  
+    <types>
+    <members>Dubai_Dreamin_Letterhead</members>
+        <name>Letterhead</name>
+    </types>
+   
+    <types> 
+   <!-- <members>Speaker__c.Approve_Speaker</members> -->
+    <members>Session__c.Approve_Session</members>
+    
+        <name>ApprovalProcess</name>
+    </types>
+     <types>
+        <members>Session__c</members>
+        <name>Workflow</name>
+  </types>
+  <types>
+        <members>Session__c.Update_Session_Approved</members>
+        <members>Session__c.Update_Session_Rejected</members>
+        <name>WorkflowFieldUpdate</name>
+    </types>
+
+    <types>
+        <members>Lead.Approved_Sponsor_Request</members> 
+        <members>Session__c.Send_Email_To_Speaker</members>
+        <members>Speaker__c.Refund_Ticket_Amount</members>
+        <name>QuickAction</name>
+    </types>
+    
+  
+    <version>58.0</version> 
+</Package>

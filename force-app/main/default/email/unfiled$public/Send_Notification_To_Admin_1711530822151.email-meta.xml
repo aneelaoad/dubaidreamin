@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Send Notification To Admin</name>
+    <style>none</style>
+    <subject>Notification: Sponsor Lead Record Generated</subject>
+    <textOnly>Dear Maham Hassan,
+
+We are pleased to inform you that the sponsor lead Name{{{Recipient.LastName}}}has been successfully created. Your prompt attention to this matter is appreciated.
+
+Here are the details of the created lead:
+
+ - Lead Record ID: {{{Recipient.Id}}}
+ - LeadName: {{{Recipient.LastName}}}
+ - Sponsorship Level: {{{Recipient.Sponsorship_Level__c}}}
+ - Company Name: {{{Recipient.Company}}}
+ - Phone:{{{Recipient.Phone}}}
+ - Email:{{{Recipient.Email}}}
+
+Please review the creat lead for any additional follow-up actions required. If you have any questions or need further assistance, please don&apos;t hesitate to reach out.
+
+Thank you for your continued support.
+
+Best regards,
+
+Dubai Dreamin</textOnly>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>
