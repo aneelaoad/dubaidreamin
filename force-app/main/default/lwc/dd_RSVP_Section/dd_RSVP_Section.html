@@ -404,14 +404,16 @@
 															
 														</li>
 														
-														<li if:true={ticketWithQuantity.discountAmount}>
-															<div class="summary_table_listText">
+														<li if:true={showAppliedPromoMessage}>
+															<div if:false={showInActivePromoMessage}>
+															<div class="summary_table_listText" if:false={showInValidPromoMessage}>
 																<p class="promo-code">
 																	<span style="margin-right: 4px;" > {promoCode}</span> 
 																	<span>(10%)</span>
 																</p>
 																<small>- AED {ticketWithQuantity.discountAmount}</small>
 															</div>
+														</div>
 														</li>
 
 
@@ -424,14 +426,114 @@
 														<li>
 															<div class="summary_table_listText">
 																<p><strong>Total </strong></p>
-																<small>AED {ticketWithQuantity.totalPrice}</small>
+																<!-- <small if:true={ticketWithQuantity.totalPrice}>AED {ticketWithQuantity.totalPrice}</small> -->
+
+																<small if:false={showAppliedPromoMessage}>AED {ticketWithQuantity.totalPrice}</small>
+																<!-- <small if:true={showInActivePromoMessage}>AED {ticketWithQuantity.totalPrice}</small> -->
+																<small if:true={showAppliedPromoMessage}>AED {ticketWithQuantity.totalDiscountedPrice}</small>
 
 																<!-- <small><strong>AED {ticketWithQuantity.totalPrice}</strong></small> -->
 															</div>
 														</li>
 													</ul>
 												</template>
-											<!-- -- promo code-- -->
+												<!-- <div style="margin-top:20px" if:true={showPromoButton}> -->
+													<div style="margin-top:20px" >
+												
+												
+													
+													<div class="subcribe_email_sec">
+														<div class="subcribe_email">
+					
+															<div class="subcribe_email_input" style="background-color: white;">
+																<input type="text" value={promoCode} placeholder="ENTER PROMO CODE" onchange={handlePromoCodeChange} />
+															</div>
+															<div class="subcribe_email_sbmt">
+																<input type="submit" value="APPLY"  onclick={handleApplyPromo} disabled={disableApplyAction} />
+								
+															</div> 
+															
+														</div>
+					
+													
+													</div>
+													<div class="inActive-promo-message" if:true={showInActivePromoMessage}>
+														<span>Promo Code is inactive or expired! 🚫</span>
+													</div>
+													<div class="invalid-promo-message" if:true={showInValidPromoMessage}>
+														<span>Promo Code is not found or invalid! ⛔</span>
+
+													</div>
+													<div class="apply-promo-message" if:true={showAppliedPromoMessage}>
+														<span>Promo Code has been applied! <span style="font-size: 15px;">🥳</span></span>
+
+													</div>
+											</div>
+											</div>
+										</div>
+									</template>
+									<template if:true={noteMessage}>
+									<div class="note-message">
+										<span class="note-icon">ℹ️</span>
+										Tax is applicable only for UAE.
+									  </div></template>
+									<div class="termText">
+										
+										
+										<p>Terms and conditions and refund policy.</p>
+										<p>Rate vary the time and local tax please read carefully our policy.</p>
+									</div>
+								</div>
+								<!-- <div class="summary_section">
+									<div class="registerProcess">
+										<span><img src="../resource/dubaiImage/images/bannerLogo.png" alt="#" /></span>
+									</div>
+									<template if:true={showOrderSummary}>
+										<div class="summary_table">
+											<h4>Order Summary</h4>
+
+											<div class="summary_table_list">
+												<template for:each={ticketsWithQuantity} for:item="ticketWithQuantity">
+													<ul key={ticketWithQuantity.id}>
+														<li>
+															<div class="summary_table_listText">
+																<p>{ticketWithQuantity.ticketTitle} x
+																	{ticketWithQuantity.quantity}</p>
+																<small>AED {ticketWithQuantity.ticketPrice}</small>
+															</div>
+														</li>
+														<li>
+															<div class="summary_table_listText">
+																<p>Subtotal</p>
+																<small>AED {ticketWithQuantity.subTotalPrice}</small>
+
+																
+															</div>
+															
+														</li>
+														
+														<li if:true={ticketWithQuantity.discountAmount}>
+															<div class="summary_table_listText">
+																<p class="promo-code">
+																	<span style="margin-right: 4px;" > {promoCode}</span> 
+																	<span>(10%)</span>
+																</p>
+																<small>- AED {ticketWithQuantity.discountAmount}</small>
+															</div>
+														</li>
+
+
+														
+														<li>
+															<div class="summary_table_listText">
+																<p><strong>Total </strong></p>
+																<small>AED {ticketWithQuantity.totalPrice}</small>
+
+															</div>
+														</li>
+													</ul>
+												</template>
+											
 											
 											<div style="margin-top:20px" if:true={showPromoButton}>
 												
@@ -466,7 +568,7 @@
 										<p>Terms and conditions and refund policy.</p>
 										<p>Rate vary the time and local tax please read carefully our policy.</p>
 									</div>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>

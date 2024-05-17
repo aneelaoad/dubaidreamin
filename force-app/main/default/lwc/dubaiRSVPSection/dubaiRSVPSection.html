@@ -36,11 +36,30 @@
 									</div>
 
 									<div class="ticketProcess_form">
-										<form >
+									
 										<ul>
 											<template for:each={tickets} for:item="ticket">
 
-											
+												<!-- <li key={ticket.id}>
+													<div class="ticketTable_row earlyRow_bg">
+														<div class="ticketTable_rowText">
+															<strong>{ticket.nickname}</strong>
+															<p>Early bird Ticket inculed early arrivals with Tearms and
+																contions polices.</p>
+														</div>
+														<div class="vat_info">
+															<strong>AED{ticket.unitAmount}</strong>
+															<small>+ VAT AED {ticket.vatTax}</small>
+														</div>
+
+														<div class="quantity_info">
+															<strong>Quantity</strong>
+
+															<input type="number" name="Quantity" label="Quantity" value="" oninput={handleQuantityChange} data-ticketid={ticket.id}>
+                                                            </div>
+
+														</div>
+												</li> -->
 
 												<li key={ticket.id}>
 													<template if:true={ticket.active}>
@@ -52,17 +71,18 @@
 															</div>
 															<div class="vat_info">
 																<strong>AED {ticket.unitAmount}</strong>
-																<small>+ VAT AED {ticket.vatTax}</small>
+																<!-- <small>+ VAT AED {ticket.vatTax}</small> -->
 															</div>
 															<div class="quantity_info">
-																<strong>Quantity</strong>
+																<!-- <strong></strong> -->
+																<button class="checkoutBtnn btnDefault" data-ticketid={ticket.id} onclick={toggleCheckOut}>Check Out</button>
 
-																<input type="number" name="Quantity" label="Quantity" value={quantity} oninput={handleQuantityChange} data-ticketid={ticket.id}>
+																<!-- <input type="number" name="Quantity" label="Quantity" value={quantity} oninput={handleQuantityChange} data-ticketid={ticket.id}>
 																<template if:true={showWarning}>
 																	<div  class="warning-message">
 																		Please enter quantity between 1 to 99
 																	</div>
-																</template>
+																</template> -->
 															</div>
 
 
@@ -79,14 +99,14 @@
 															</div>
 															<div class="vat_info">
 																<strong>AED {ticket.unitAmount}</strong>
-																<small>+ VAT AED {ticket.vatTax}</small>
+																<!-- <small>+ VAT AED {ticket.vatTax}</small> -->
 															</div>
 
 
 															<div class="quantity_info" >
-																<strong>Quantity</strong>
+																<strong></strong>
 
-																<input type="number" name="Quantity" label="Quantity" value="" oninput={handleQuantityChange} data-ticketid={ticket.id} disabled>
+																<!-- <input type="number" name="Quantity" label="Quantity" value="" oninput={handleQuantityChange} data-ticketid={ticket.id} disabled> -->
 																<!-- <template if:true={showWarning}>
 																	<div class="showWarning">
 																		Enter quatity between 1 to 99
@@ -102,8 +122,8 @@
 
 
 											</template>
-										</ul>
-									</form>
+										</ul>	
+									<!-- </form> -->
 									</div>
 
 									<div class="checkout_row">
@@ -111,7 +131,6 @@
 										<p>Please Read carefully our Terms and condition and refund polices before check
 											out.</p>
 										<!-- <button class="checkoutBtnn btnDefault">CHECK OUT</button> -->
-										<button class="checkoutBtnn btnDefault" onclick={toggleCheckOut}>Check Out</button>
 									</div>
 								</div>
 
@@ -145,26 +164,40 @@
 														</div>
 														</div>
 												</li>
-											
+												<!-- <li>
+													<div class="customInput_col">
+														<strong>TAX RECEIPT</strong>
+														<div class="customInput_field">
+															<input onchange={handleFieldChange} type="text" value="" placeholder="Name on TAX Receipt" data-fieldname="TAX RECEIPT">
+       													 </div>
+														</div>
+												</li> -->
 
 												<li>
 													<div class="customInput_col">
 														<strong>Last Name<span class="star">*</span></strong>
 														<div class="customInput_field">
-															<input onchange={handleFieldChange} type="text" value={lastName} placeholder="Last Name" data-fieldname="Last Name" required>
+															<input onchange={handleFieldChange} type="text" value="" placeholder="Last Name" data-fieldname="Last Name" required>
 														 <span if:false={lastName} class="error-msg"></span>
     														
 															</div>
 														</div>
 												</li>
 
-											
+												<!-- <li>	
+													<div class="customInput_col">
+														<strong>Address</strong>
+														<div class="customInput_field">
+															<input onchange={handleFieldChange} type="text" value="" placeholder="Address" data-fieldname="ADDRESS">
+      														  </div>
+														</div>
+												</li> -->
 
 												<li>
 													<div class="customInput_col">
 														<strong>EMAIL<span class="star">*</span></strong>
 														<div class="customInput_field">
-															<input onchange={handleFieldChange} type="email" value={email} placeholder="Enter Your Email address" data-fieldname="Email" required>
+															<input onchange={handleFieldChange} type="email" value="" placeholder="Enter Your Email address" data-fieldname="Email" required>
 														 <span if:false={email} class="error-msg"></span>
 														 <span class="email-validation-msg"></span>
 
@@ -176,7 +209,7 @@
 													<div class="customInput_col">
 														<strong>Trailblazer Id<span class="star">*</span></strong>
 														<div class="customInput_field">
-															<input onchange={handleFieldChange} type="text" value={trailblazerId} placeholder="Enter Your Trailblazer Id" data-fieldname="Trailblazer Id" required>
+															<input onchange={handleFieldChange} type="text" value="" placeholder="Enter Your Trailblazer Id" data-fieldname="Trailblazer Id" required>
 														 <span if:false={trailblazerId} class="error-msg"></span>
        													
 														    </div>
@@ -186,7 +219,7 @@
 													<div class="customInput_col">
 														<strong>LINKEDIN<span class="star">*</span></strong>
 														<div class="customInput_field">
-															<input onchange={handleFieldChange} type="text" value={linkedinId} placeholder="Enter Your Linkedin" data-fieldname="Linkedin" required>
+															<input onchange={handleFieldChange} type="text" value="" placeholder="Enter Your Linkedin" data-fieldname="Linkedin" required>
 														 <span if:false={linkedinId} class="error-msg"></span>
        													
 														    </div>
@@ -212,14 +245,55 @@
 												</li>
 
 												
-											
+												<!-- <li class="w-25">
+													<div class="customInput_col">
+														<strong>TOWN/CITY</strong>
+														<div class="customInput_field">
+														
+															<select onchange={handleFieldChange} data-fieldname="TOWN/CITY">
+                                                              <template for:each={cityPickList} for:item="item">
+																<option key={item.value} value={item.value}>{item.label}</option>
+															</template>
+                                                             </select>
+															 
+														</div>
+													</div>
+												</li> -->
+
+
+
+												<!-- <li class="w-25">
+													<div class="customInput_col">
+														<strong>POSTAL CODE</strong>
+														<div class="customInput_field">
+															<input onchange={handleFieldChange} type="text" value="" placeholder="" data-fieldname="POSTAL CODE">
+      														  </div>
+														</div>
+												</li> -->	
+
+												<!-- <li class="w-50">
+													<div class="customInput_col">
+														<strong>PHONE NUMBER<span class="star">*</span></strong>
+														<div class="customInput_field">
+															<input onchange={handleFieldChange} type="text" value={phoneNumber} placeholder="" data-fieldname="Phone Number" required>
+														 <div if:false={phoneNumber} class="error-msg"></div>
+       														
+															   </div>
+														</div>
+												</li> -->
 												<li class="w-50">
 													<div class="customInput_col">
 														<strong>PHONE NUMBER<span class="star">*</span></strong>
 														<div class="customInput_field">
 															<div style="display: flex;">
-																
-																<input onchange={handleFieldChange} style="margin-left:2px" type="text" value={phoneNumber} placeholder="Enter Your Phone Number" data-fieldname="Phone Number" required>
+																<!-- Country Code Select -->
+																<!-- <select onchange={handleCountryCodeChange} value={selectedCountryCode} style="width:100px; max-height: 37px;">
+																	<template for:each={countryCodes} for:item="country">
+																		<option key={country.code} value={country.code}>{country.code} ({country.name})</option>
+																	</template>
+																</select> -->
+																<!-- Phone Number Input -->
+																<input onchange={handlePhoneNumberChange} style="margin-left:2px" type="text" value={phoneNumber} placeholder="Enter Your Phone Number" data-fieldname="Phone Number" required>
 															</div>
 															<div if:false={phoneNumber} class="error-msg"></div>
 														</div>
@@ -300,7 +374,7 @@
 
 														<div class="customInput_field">
 															<input onchange={handleFieldChange} type="text"
-																value={designation} placeholder="XYZ"
+																value="" placeholder="XYZ"
 																data-fieldname="Company Name" required />
 																<div if:false={designation} class="error-msg"></div>
 
@@ -338,13 +412,13 @@
 
 														<div class="customInput_field">
 															<textarea placeholder="Message"
-																onchange={handleFieldChange}  data-fieldname='Message' value={message} ></textarea>
+																onchange={handleFieldChange}  data-fieldname='Message' ></textarea>
 																<div class="error-msg"></div>
 														</div>
 													</div>
-												
-													<div if:true={showAgreementCheckbox} class="customCheckbox">
-														<input type="checkbox"  onchange={handleFieldChange} data-fieldname="Terms & Conditions" value={agreement} required><label style="padding-left: 10px;"><span class="star">*</span>I agree to the above additional terms.</label>
+
+													<div class="customCheckbox">
+														<input type="checkbox"  onchange={handleFieldChange} data-fieldname="Terms & Conditions" required><label style="padding-left: 10px;"><span class="star">*</span>I agree to the above additional terms.</label>
 														 <span if:false={agreement} class="error-msg"></span>
 														
 														
@@ -354,21 +428,13 @@
 
 
 												<li class="w-100">
-													<div class="formSubmitBtn" style="display: flex; flex-wrap: wrap">
-														<span style="display: flex;
-														justify-content: center;
-														align-items: center;">{pageCount} <span style="margin: 0 3px;">/</span> {quantity}</span>
-														<button class="btnDefault" onclick={handlePrevousButton}>Previous</button>
-														
-														<template if:false={isPlaceOrderVisible}>
-															<button class="btnDefault" onclick={handleNextButton}>Next</button>
-														</template>
-														<template if:true={isPlaceOrderVisible}>
-															<button class="btnDefault placeOrder" onclick={handlePayNow}>Place Order</button>
-														</template>
+													<div class="formSubmitBtn">
+														<!-- <button class="btnDefault" onclick={handlePayNow}>Place Order</button> -->
+														<button class="btnDefault" onclick={handlePayNow}>Place Order</button>
 													</div>
 												</li>
 											</ul>
+										
 										</div>
 									</div>
 								</div>
@@ -484,91 +550,6 @@
 										<p>Rate vary the time and local tax please read carefully our policy.</p>
 									</div>
 								</div>
-								<!-- <div class="summary_section">
-									<div class="registerProcess">
-										<span><img src="../resource/dubaiImage/images/bannerLogo.png" alt="#" /></span>
-									</div>
-									<template if:true={showOrderSummary}>
-										<div class="summary_table">
-											<h4>Order Summary</h4>
-
-											<div class="summary_table_list">
-												<template for:each={ticketsWithQuantity} for:item="ticketWithQuantity">
-													<ul key={ticketWithQuantity.id}>
-														<li>
-															<div class="summary_table_listText">
-																<p>{ticketWithQuantity.ticketTitle} x
-																	{ticketWithQuantity.quantity}</p>
-																<small>AED {ticketWithQuantity.ticketPrice}</small>
-															</div>
-														</li>
-														<li>
-															<div class="summary_table_listText">
-																<p>Subtotal</p>
-																<small>AED {ticketWithQuantity.subTotalPrice}</small>
-
-																
-															</div>
-															
-														</li>
-														
-														<li if:true={ticketWithQuantity.discountAmount}>
-															<div class="summary_table_listText">
-																<p class="promo-code">
-																	<span style="margin-right: 4px;" > {promoCode}</span> 
-																	<span>(10%)</span>
-																</p>
-																<small>- AED {ticketWithQuantity.discountAmount}</small>
-															</div>
-														</li>
-
-
-														
-														<li>
-															<div class="summary_table_listText">
-																<p><strong>Total </strong></p>
-																<small>AED {ticketWithQuantity.totalPrice}</small>
-
-															</div>
-														</li>
-													</ul>
-												</template>
-											
-											
-											<div style="margin-top:20px" if:true={showPromoButton}>
-												
-												
-													
-													<div class="subcribe_email_sec">
-														<div class="subcribe_email">
-															<div class="subcribe_email_input" style="background-color: white;">
-																<input type="text" value={promoCode} placeholder="ENTER PROMO CODE" onchange={handlePromoCodeChange} />
-															</div>
-															<div class="subcribe_email_sbmt">
-																<input type="submit" value="APPLY"  onclick={handleApplyPromo} />
-															</div> 
-															
-														</div>
-					
-													
-													</div>
-												
-											</div>
-											</div>
-										</div>
-									</template>
-									<template if:true={noteMessage}>
-									<div class="note-message">
-										<span class="note-icon">ℹ️</span>
-										Tax is applicable only for UAE.
-									  </div></template>
-									<div class="termText">
-										
-										
-										<p>Terms and conditions and refund policy.</p>
-										<p>Rate vary the time and local tax please read carefully our policy.</p>
-									</div>
-								</div> -->
 							</div>
 						</div>
 					</div>

@@ -2,7 +2,7 @@ import { LightningElement, wire } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getDubaiDreaminEventId from '@salesforce/apex/EventController.getDubaiDreaminEventId';
 import retrievePrice from '@salesforce/apex/PaymentController.retrievePrice';
-import registerAttendee from '@salesforce/apex/DubaiRSVPController.registerAttendees';
+import registerAttendee from '@salesforce/apex/DubaiRSVPController.registerAttendee';
 import createPaymentPage from '@salesforce/apex/DubaiRSVPController.createPaymentPage';
 import { getObjectInfo, getPicklistValues } from "lightning/uiObjectInfoApi";
 import ATTENDEE_OBJECT from "@salesforce/schema/Attendee__c";
@@ -12,23 +12,24 @@ import COMPANYSIZE_FIELD from "@salesforce/schema/Attendee__c.Company_Size__c";
 import FOOD_FIELD from "@salesforce/schema/Attendee__c.Food_Preference__c";
 import TSHIRT_FIELD from "@salesforce/schema/Attendee__c.Tshirt_Size__c";
 import SESSION_FIELD from "@salesforce/schema/Attendee__c.Session_Interest__c";
+import fetchCouponId from '@salesforce/apex/DubaiRSVPController.fetchCouponId';
 import SCROLL_MESSAGE from '@salesforce/messageChannel/ScrollMessageChannel__c';
 import EVENT_ID_LMS from '@salesforce/messageChannel/EventIDMessageChannel__c';
 import { publish, subscribe, MessageContext } from 'lightning/messageService';
-import fetchCouponId from '@salesforce/apex/DubaiRSVPController.fetchCouponId';
 
 export default class DubaiRSVPSection extends LightningElement {
   speakersLink = '/s/speakers';
   thankYouLink = window.location.href + 'thank-you-attendee';
 
   selectedEventId;
-  quantity = 0;
+  quantity = 1;
   ticketId;
   ticketsWithQuantity = [];
   ticketInfo = {}
   tickets;
   selectedTicket;
   totalTicketPrice;
+
 
   // --- section flags---
   isOpen = false;
@@ -37,49 +38,41 @@ export default class DubaiRSVPSection extends LightningElement {
   showOrderSummary = false;
   showCheckout = false;
   isTicketActive = true;
-  isPlaceOrderVisible = false;
-  isNextButtonVisible = true;
-  isPreviousButtonVisible = true;
-  showAgreementCheckbox=false
-  showPromoButton=false
   showWarning = false;
   noteMessage = false
   showInActivePromoMessage = false;
   showInValidPromoMessage = false;
   showAppliedPromoMessage=false;
   disableApplyAction = false;
-
-
+  
 
 
   // ----attendee info----
-  nextButtonClickCount = 0;
-
-  allAttendeesData = [];
   attendeeId
-  pageCount=1
-  nextAttendeeId = 1;
   firstName = '';
   lastName = '';
   email = '';
-  taxReceipt;
-  attendeeAddress;
-  attendeeCountry;
-  registrationType;
-  townCity;
-  postalCode;
+  taxReceipt = '';
+  attendeeAddress = '';
+  attendeeCountry = 'United Arab Emirates';
+  registrationType = '';
+  townCity = '';
+  postalCode = '';
   phoneNumber = '';
-  sessionInterest;
+  selectedCountryCode = '';
+
+
+  sessionInterest = 'Sales Cloud';
   companyName = '';
-  foodPreference;
-  tShirtSize;
+  foodPreference = 'Non-Veg';
+  tShirtSize = 'Medium';
   designation = '';
-  companySize;
+  companySize = '1 - 50';
   paymentPageLink;
   trailblazerId = '';
   linkedinId = '';
-  message = '';
-  agreement = false;
+  message;
+  agreement;
 
 
   attendeeRecordTypeId;
@@ -90,12 +83,30 @@ export default class DubaiRSVPSection extends LightningElement {
   tShirtSizePickList;
   companySizePickList;
 
-  // -----promo details----
-  couponId;
-  promoActivationDate
-  promoExpiryDate
-  promoCode=''
 
+  // ------promo/voucher/coupon details----------
+  promoCode = '';
+  couponId;
+  promoActivationDate;
+  promoExpiryDate;
+
+
+
+
+
+  countryCodes = [
+    { code: '+1', name: 'USA' },
+    { code: '+44', name: 'UK' },
+    // Add more country codes as needed
+  ];
+
+  handleCountryCodeChange(event) {
+    this.selectedCountryCode = event.target.value;
+  }
+
+  handlePhoneNumberChange(event) {
+    this.phoneNumber = event.target.value;
+  }
 
   @wire(MessageContext)
   messageContext
@@ -103,21 +114,14 @@ export default class DubaiRSVPSection extends LightningElement {
   subscribeToScrollMsg() {
 
     let scrollSubs = subscribe(this.messageContext, SCROLL_MESSAGE, (sectionMessage) => {
-
-      console.log('sectionMessage', sectionMessage);
       this.handleMessage(sectionMessage)
     })
-    // console.log(this.sectionMessage)
   }
 
   handleMessage(sectionMessage) {
     let section = sectionMessage.section;
-    console.log('handleMessage', section);
-
     if (section == 'goto_register') {
-      console.log(this.template.querySelector('.goto_register'));
       this.template.querySelector('.goto_register').scrollIntoView({ behavior: 'smooth' });
-
     }
   }
 
@@ -134,11 +138,9 @@ export default class DubaiRSVPSection extends LightningElement {
 
 
   loadTickets() {
-    console.log('loadTickets : ');
     retrievePrice()
       .then(result => {
         this.tickets = result;
-        console.log(' this.tickets : ', JSON.stringify(this.tickets));
 
         this.showTickets = true;
 
@@ -180,7 +182,7 @@ export default class DubaiRSVPSection extends LightningElement {
       case 'ADDRESS':
         this.attendeeAddress = value;
         break;
-      case 'Country':
+      case 'COUNTRY':
         this.attendeeCountry = value;
         break;
       case 'REGISTRATION TYPE':
@@ -227,25 +229,26 @@ export default class DubaiRSVPSection extends LightningElement {
         break;
     }
   }
-  showWarning = false;
-  noteMessage = false
-  handleQuantityChange(event) {
+
+
+
+  ticketInfo;
+  handleQuantityChange(ticketId) {
     this.noteMessage = true
+    debugger;
+    // const ticketId = ticketId;
+    const enteredQuantity = 1;
 
-    const ticketId = event.target.dataset.ticketid;
-    const enteredQuantity = parseInt(event.target.value);
+    // if (isNaN(enteredQuantity) || enteredQuantity < 1 || enteredQuantity > 99) {
+    //   // If the entered value is not a number or it's less than 1 or greater than 99
+    //   event.target.value = ''; // Reset input field
+    //   this.showWarning = true; // 
+    //   return; // Exit the method
+    // }
+    // else{
+    //   this.showWarning = false; // 
 
-    if (isNaN(enteredQuantity) || enteredQuantity < 1 || enteredQuantity > 99) {
-      // If the entered value is not a number or it's less than 1 or greater than 99
-      event.target.value = ''; // Reset input field
-      this.showWarning = true; // 
-      return; // Exit the method
-    }
-    else {
-      this.showWarning = false; // 
-
-    }
-
+    // }
     this.quantity = enteredQuantity;
 
     this.ticketsWithQuantity = [];
@@ -264,7 +267,7 @@ export default class DubaiRSVPSection extends LightningElement {
     // Calculate total price including VAT
     let totalPrice = subTotalPrice;
     if (selectedTicket && this.quantity !== 0) {
-      const ticketInfo = {
+      this.ticketInfo = {
         id: ticketId,
         quantity: maxQuantity,
         ticketTitle: selectedTicket.nickname,
@@ -275,7 +278,7 @@ export default class DubaiRSVPSection extends LightningElement {
       };
 
 
-      this.ticketsWithQuantity.push(ticketInfo);
+      this.ticketsWithQuantity.push(this.ticketInfo);
       // console.log('this.ticketsWithQuantity:', this.ticketsWithQuantity);
       console.log('discountAmount: ', discountAmount);
     }
@@ -287,20 +290,16 @@ export default class DubaiRSVPSection extends LightningElement {
 
 
 
-  toggleCheckOut() {
-this.pageCount=1
+  toggleCheckOut(event) {
+    this.handleQuantityChange(event.currentTarget.dataset.ticketid);
     if (Object.keys(this.ticketsWithQuantity).length > 0) {
       let attendeeForm = this.template.querySelector('.attendee-form');
       let ticketForm = this.template.querySelector('.ticket_table_flShow');
+
       ticketForm.style.display = 'none'
       attendeeForm.style.display = 'block'
-
-      this.handleButtonVisibility();
-
-
     }
     else {
-      console.log('PLEASE ATLEAST CHOOSE 1 PURCHASE!')
       this.dispatchEvent(
         new ShowToastEvent({
           title: 'BUY 1 TICKET ATLEAST',
@@ -318,73 +317,196 @@ this.pageCount=1
     ticketForm.style.display = 'block'
     attendeeForm.style.display = 'none'
 
+    if (ticketForm.style.display = 'block') {
+      this.showOrderSummary = false
+    }
+
+    this.resetForm();
+  }
+
+
+  handleValidation() {
+
+
+    const inputFields = this.template.querySelectorAll('input[required], select[required], textarea[required]');
+    const checkboxField = this.template.querySelector('input[type="checkbox"][required]');
+    const emailField = this.template.querySelector('input[type="email"]');
+    emailField.reportValidity();
+    let isValid = true;
+    // this.handleEmailValidation();
+
+    inputFields.forEach(field => {
+      if (!field.value.trim()) {
+        isValid = false;
+        const fieldName = field.getAttribute('data-fieldname');
+
+        const errorMessage = `${fieldName} is required.`;
+        const errorElement = field.parentElement.querySelector('.error-msg');
+
+
+
+        if (errorElement) {
+          errorElement.textContent = errorMessage;
+          errorElement.style.display = 'block';
+        }
+      }
+    });
+    // Check if the checkbox is checked
+    if (!checkboxField.checked) {
+      isValid = false;
+      const fieldName = checkboxField.getAttribute('data-fieldname');
+      const errorMessage = `Please agree to ${fieldName}.`;
+      const errorElement = checkboxField.parentElement.querySelector('.error-msg');
+      if (errorElement) {
+        errorElement.textContent = errorMessage;
+        errorElement.style.display = 'block';
+      }
+    }
+
+    return isValid;
+  }
+
+  // ---------promo apply -----
+
+  // ----------apply promo code------------
+  handlePromoCodeChange(event) {
+    this.promoCode = event.target.value;
+  }
+
+  // showInActivePromoMessage;
+  // showInValidPromoMessage
+  // handleApplyPromo() {
+
+  //   this.showInActivePromoMessage = false;
+  //   this.showInValidPromoMessage = false;
+  
+  //   fetchCouponId({ promoCode: this.promoCode })
+  //     .then(result => {
+  //       if (result) {
+  //         if (result.isActive) {
+  //           // Check if a valid promo code is applied after an invalid one
+  //           if (this.previousPromoCodeStatus && !this.previousPromoCodeStatus.isActive) {
+  //             this.showInvalidAfterValidMessage = true;
+  //             // Reset the applied promo code status
+  //             this.previousPromoCodeStatus = null;
+  //           } else {
+  //             this.showAppliedPromoMessage = true;
+  //           }
+  
+  //           this.couponId = result.couponId;
+  //           this.promoActivationDate = result.activationDate;
+  //           this.promoExpiryDate = result.expiryDate;
+  
+  //           // ----apply discount ----
+  //           this.ticketsWithQuantity.forEach(ticket => {
+  //             let discountAmount = ticket.ticketPrice * 0.1;
+  //             let totalDiscountAmount = discountAmount * ticket.quantity;
+  
+  //             ticket.discountAmount = parseFloat(totalDiscountAmount.toFixed(3));
+  //             ticket.totalPrice = parseFloat(((ticket.ticketPrice - discountAmount) * ticket.quantity).toFixed(3));
+  //           });
+  //           this.ticketsWithQuantity = [...this.ticketsWithQuantity];
+  
+  //           // Save the status of the current promo code for future reference
+  //           this.previousPromoCodeStatus = result;
+  
+  //         } else {
+  //           this.showInActivePromoMessage = true;
+  //           this.showInValidPromoMessage = false;
+  //           this.showAppliedPromoMessage = false;
+  //         }
+  //       }
+  //     })
+  //     .catch(error => {
+  //       this.showInValidPromoMessage = true;
+  //       this.showInActivePromoMessage = false;
+  //       this.showAppliedPromoMessage = false;
+  //     });
+  
+  // }
+  
+  
+  handleApplyPromo() {
+
+    this.showInActivePromoMessage = false;
+    this.showInValidPromoMessage = false;
+    this.showAppliedPromoMessage = false;
+    this.disableApplyAction = true;
+
+
+    fetchCouponId({ promoCode: this.promoCode })
+      .then(result => {
+        if (result) {
+
+          if (result.isActive) {
+          // this.showAppliedPromoMessage = true
+          this.showAppliedPromoMessage = true
+            console.log('result: ',JSON.stringify(result));
+            
+            this.couponId = result.couponId;
+            console.log('couponId: '+this.couponId);
+            
+            this.promoActivationDate = result.activationDate
+            this.promoExpiryDate = result.expiryDate
+
+            this.ticketsWithQuantity.forEach(ticket => {
+              let discountAmount = parseInt(ticket.ticketPrice) * (Number(result.discountPercentage) / 100);
+              let totalDiscountAmount = discountAmount * ticket.quantity;
+
+          
+              ticket.discountAmount = parseFloat(totalDiscountAmount.toFixed(3));
+              ticket.totalDiscountedPrice = parseFloat(((ticket.ticketPrice - discountAmount) * ticket.quantity).toFixed(3));
+            });
+            this.ticketsWithQuantity = [...this.ticketsWithQuantity];
+
+
+            // this.dispatchEvent(
+            //   new ShowToastEvent({
+            //     title: result.promoCode + ' applied',
+            //     message: 'Promo code successfully  applied! ',
+            //     variant: 'info'
+            //   })
+            // );
+          }
+
+          else {
+
+            this.showInActivePromoMessage = true
+            this.showInValidPromoMessage = false
+            this.showAppliedPromoMessage = false
+          
+            // window.alert('Promo is inactive or expired!')
+          }
+
+        }
+        this.disableApplyAction = false;
+
+      })
+      .catch(error => {
+
+        this.showInValidPromoMessage = true
+        this.showInActivePromoMessage = false
+        this.showAppliedPromoMessage = false
+        this.disableApplyAction = false;
+
+
+        // window.alert('Promo code is not matched or invalid');
+
+      });
 
   }
 
 
-  handleButtonVisibility() {
-    if (this.quantity === 1) {
-      this.isNextButtonVisible = false;
-      this.isPlaceOrderVisible = true;
-    } else {
-      this.isNextButtonVisible = this.nextButtonClickCount < this.quantity - 1;
-      this.isPlaceOrderVisible = !this.isNextButtonVisible;
+
+  handlePayNow() {
+
+    let isValid = this.handleValidation();
+    // If any required field is empty, stop further processing
+    if (!isValid) {
+      return;
     }
 
-    this.isPreviousButtonVisible = this.isNextButtonVisible;
-
-    if(!this.isNextButtonVisible){
-      this.showAgreementCheckbox=true
-      this.showPromoButton=true
-    }
-    else{
-      this.showAgreementCheckbox=false
-      this.showPromoButton=false;
-
-    }
-
-  }
-  handleNextButton() {
-    this.pageCount++
-
-    if (this.nextButtonClickCount < this.quantity) {
-
-      this.pushFormData();
-      this.nextButtonClickCount++;
-
-      this.handleButtonVisibility();
-      this.resetForm();
-
-      this.fillAttendeeForm();
-
-    }
-
-    else {
-      window.alert('You have reached the maximum quantity of purchase.');
-
-    }
-
-  }
-
-
-  handlePrevousButton() {
-    this.pageCount--
-
-    if (this.nextButtonClickCount > 0) {
-      console.log('this.nextButtonClickCount: ', this.nextButtonClickCount);
-
-      this.nextButtonClickCount--;
-      this.fillAttendeeForm();
-      
-
-      this.handleButtonVisibility();
-    } else {
-      window.alert('You are already at the first attendee form.');
-    }
-  }
-  pushFormData() {
-    let attendeeData = {
-      id: this.nextAttendeeId,
+    let attendeeListObj = {
       eventId: this.selectedEventId,
       ticketsList: this.ticketsWithQuantity,
       firstName: this.firstName,
@@ -406,156 +528,21 @@ this.pageCount=1
       agreement: this.agreement,
       trailblazerId: this.trailblazerId,
       linkedinId: this.linkedinId
-    };
-    this.nextAttendeeId++;
-    // this.allAttendeesData.push(attendeeData);
-    if (this.nextButtonClickCount === 0) {
-      attendeeData.primary = true;
-    } else {
-      attendeeData.primary = false;
     }
-    this.allAttendeesData[this.nextButtonClickCount] = attendeeData;
+    let q;
+    let i;
 
+    this.ticketsWithQuantity.forEach(ticket => {
+      q = ticket.quantity;
+      i = ticket.id;
 
-  }
-  fillAttendeeForm() {
-    let previousAttendeeData = this.allAttendeesData[this.nextButtonClickCount];
-    this.selectedEventId = previousAttendeeData.eventId;
-    this.ticketsWithQuantity = previousAttendeeData.ticketsList;
-    this.firstName = previousAttendeeData.firstName;
-    this.lastName = previousAttendeeData.lastName;
-    this.email = previousAttendeeData.email;
-    this.taxReceipt = previousAttendeeData.taxReceipt;
-    this.attendeeAddress = previousAttendeeData.address;
-    this.attendeeCountry = previousAttendeeData.country;
-    this.townCity = previousAttendeeData.townCity;
-    this.postalCode = previousAttendeeData.postalCode;
-    this.phoneNumber = previousAttendeeData.phone;
-    this.sessionInterest = previousAttendeeData.sessionInterest;
-    this.companyName = previousAttendeeData.companyName;
-    this.foodPreference = previousAttendeeData.foodPreference;
-    this.tShirtSize = previousAttendeeData.tShirtSize;
-    this.designation = previousAttendeeData.designation;
-    this.companySize = previousAttendeeData.companySize;
-    this.message = previousAttendeeData.message;
-    this.agreement = previousAttendeeData.agreement;
-    this.trailblazerId = previousAttendeeData.trailblazerId;
-    this.linkedinId = previousAttendeeData.linkedinId;
-  }
-
-  
-  // ----------apply promo code------------
-  handlePromoCodeChange(event) {
-    this.promoCode = event.target.value;
-}
-
-handleApplyPromo(){
- 
-    this.showInActivePromoMessage = false;
-    this.showInValidPromoMessage = false;
-    this.showAppliedPromoMessage = false;
-    this.disableApplyAction = true;
-
-  fetchCouponId({ promoCode: this.promoCode })
-  .then(result => {
-     if (result) {
-      if(result.isActive){
-        this.showAppliedPromoMessage = true
-
-        this.couponId = result.couponId;
-      
-       
-           this.ticketsWithQuantity.forEach(ticket => {
-              //  let discountAmount = ticket.ticketPrice * 0.1;
-              let discountAmount = parseInt(ticket.ticketPrice) * (Number(result.discountPercentage) / 100);
-
-               let totalDiscountAmount = discountAmount * ticket.quantity;
- 
-               ticket.discountAmount = parseFloat(totalDiscountAmount.toFixed(3));
-               ticket.totalDiscountedPrice = parseFloat(((ticket.ticketPrice - discountAmount) * ticket.quantity).toFixed(3));           });
-           this.ticketsWithQuantity = [...this.ticketsWithQuantity];
-         
-           
-           this.dispatchEvent(
-             new ShowToastEvent({
-               title: result.promoCode+' applied',
-               message: 'Promo code successfully  applied! ',
-               variant: 'info'
-             })
-           );
-       } 
-
-       else{
-        this.showInActivePromoMessage = true
-        this.showInValidPromoMessage = false
-        this.showAppliedPromoMessage = false
-       }
-
-      }
-      this.disableApplyAction = false;
-})
-.catch(error => {
-  
-  this.showInValidPromoMessage = true
-  this.showInActivePromoMessage = false
-  this.showAppliedPromoMessage = false
-  this.disableApplyAction = false;
-
-});
-
-}
-
-  handlePayNow() {
-    const inputFields = this.template.querySelectorAll('input[required], select[required], textarea[required]');
-    const checkboxField = this.template.querySelector('input[type="checkbox"][required]');
-
-    let isValid = true;
-
-    inputFields.forEach(field => {
-      if (!field.value.trim()) {
-        isValid = false;
-        const fieldName = field.getAttribute('data-fieldname');
-        console.log('fieldName : ', fieldName);
-        const errorMessage = `${fieldName} is required.`;
-        const errorElement = field.parentElement.querySelector('.error-msg');
-        if (errorElement) {
-          errorElement.textContent = errorMessage;
-          errorElement.style.display = 'block';
-        }
-      }
     });
-    // Check if the checkbox is checked
-    if (!checkboxField.checked) {
-      isValid = false;
-      const fieldName = checkboxField.getAttribute('data-fieldname');
-      const errorMessage = `Please agree to ${fieldName}.`;
-      const errorElement = checkboxField.parentElement.querySelector('.error-msg');
-      if (errorElement) {
-        errorElement.textContent = errorMessage;
-        errorElement.style.display = 'block';
-      }
-    }
-    // If any required field is empty, stop further processing
-    if (!isValid) {
-      return;
-    }
-    if (this.nextButtonClickCount === this.quantity - 1) {
-      this.pushFormData();
+    // i = 'price_1P6tv1BG9mkkVMIkCiIAz00Y'
 
-      let q;
-      let i;
-  
-      this.ticketsWithQuantity.forEach(ticket => {
-        q = ticket.quantity;
-        i = ticket.id;
-  
-      });
-
-      registerAttendee({ attendeesInfo: JSON.stringify(this.allAttendeesData) })
+    registerAttendee({ attendeeInfo: JSON.stringify(attendeeListObj) })
       .then((attendeeObj) => {
-        this.attendeeId = attendeeObj
+        this.attendeeId = attendeeObj.Id
 
-        console.log(' this.attendeeId', this.attendeeId);
 
         this.dispatchEvent(
           new ShowToastEvent({
@@ -564,54 +551,17 @@ handleApplyPromo(){
             variant: 'success'
           })
         );
-        createPaymentPage({ attendeeId: this.attendeeId, quantity: q, priceId: i, redirectUrl: this.thankYouLink , couponId: this.couponId})
+        createPaymentPage({ attendeeId: this.attendeeId, quantity: q, priceId: i, redirectUrl: this.thankYouLink, couponId: this.couponId })
           .then((paymentId => {
 
             this.paymentPageLink = paymentId;
             window.location.href = this.paymentPageLink;
-
-            console.log('paymentId : ', paymentId);
           }))
           .catch((err) => {
 
           })
 
       })
-      this.resetForm();
-    } else {
-
-      window.alert('Please complete all attendees before proceeding to payment.');
-    }
-
-
-
-    // registerAttendee({ attendeesInfo: JSON.stringify(this.allAttendeesData) })
-    //   .then((attendeeObj) => {
-    //     console.log('OUTPUT OF REGISTER ATTENDEE : ', JSON.stringify(attendeeObj));
-    //     this.attendeeId = attendeeObj
-
-    //     console.log(' this.attendeeId', this.attendeeId);
-
-    //     this.dispatchEvent(
-    //       new ShowToastEvent({
-    //         title: 'Success',
-    //         message: 'Successfully registered for event! ',
-    //         variant: 'success'
-    //       })
-    //     );
-    //     createPaymentPage({ attendeeId: this.attendeeId, quantity: q, priceId: i, redirectUrl: this.thankYouLink })
-    //       .then((paymentId => {
-
-    //         this.paymentPageLink = paymentId;
-    //         window.location.href = this.paymentPageLink;
-
-    //         console.log('paymentId : ', paymentId);
-    //       }))
-    //       .catch((err) => {
-
-    //       })
-
-    //   })
 
 
 
@@ -622,8 +572,6 @@ handleApplyPromo(){
   results({ error, data }) {
     if (data) {
       this.attendeeRecordTypeId = data.defaultRecordTypeId;
-
-
       this.error = undefined;
     } else if (error) {
       this.error = error;
@@ -635,7 +583,6 @@ handleApplyPromo(){
   getCountryValues({ error, data }) {
     if (data) {
       this.countryPickList = data.values;
-
       this.error = undefined;
     } else if (error) {
       this.error = error;
@@ -645,7 +592,6 @@ handleApplyPromo(){
   getCityValues({ error, data }) {
     if (data) {
       this.cityPickList = data.values;
-
       this.error = undefined;
     } else if (error) {
       this.error = error;
@@ -655,7 +601,6 @@ handleApplyPromo(){
   getFoodValues({ error, data }) {
     if (data) {
       this.foodPreferencePickList = data.values;
-
       this.error = undefined;
     } else if (error) {
       this.error = error;
@@ -665,7 +610,6 @@ handleApplyPromo(){
   getShirtValues({ error, data }) {
     if (data) {
       this.tShirtSizePickList = data.values;
-
       this.error = undefined;
     } else if (error) {
       this.error = error;
@@ -676,7 +620,6 @@ handleApplyPromo(){
   getCompanySizeValues({ error, data }) {
     if (data) {
       this.companySizePickList = data.values;
-
       this.error = undefined;
     } else if (error) {
       this.error = error;
@@ -687,37 +630,38 @@ handleApplyPromo(){
   getSessionValues({ error, data }) {
     if (data) {
       this.sessionIntrestPickList = data.values;
-
       this.error = undefined;
     } else if (error) {
       this.error = error;
 
     }
   }
-  resetForm() {
-    // this.selectedEventId = ''; // Reset eventId
-    // this.ticketsWithQuantity = []; // Reset ticketsList
-    this.firstName = ''; // Reset firstName
-    this.lastName = ''; // Reset lastName
-    this.email = ''; // Reset email
-    this.taxReceipt = false; // Reset taxReceipt
-    this.attendeeAddress = ''; // Reset address
-    this.attendeeCountry = ''; // Reset country
-    this.townCity = ''; // Reset townCity
-    this.postalCode = ''; // Reset postalCode
-    this.phoneNumber = ''; // Reset phone
-    this.sessionInterest = ''; // Reset sessionInterest
-    this.companyName = ''; // Reset companyName
-    this.foodPreference = ''; // Reset foodPreference
-    this.tShirtSize = ''; // Reset tShirtSize
-    this.designation = ''; // Reset designation
-    this.companySize = ''; // Reset companySize
-    this.message = ''; // Reset message
-    this.agreement = false; // Reset agreement
-    this.trailblazerId = ''; // Reset trailblazerId
-    this.linkedinId = ''; // Reset linkedinId
-  }
 
+  resetForm() {
+    // Reset all form field values to their initial state
+    this.attendeeId = '';
+    this.firstName = '';
+    this.lastName = '';
+    this.email = '';
+    this.taxReceipt = '';
+    this.attendeeAddress = '';
+    this.attendeeCountry = 'United Arab Emirates';
+    this.registrationType = '';
+    this.townCity = '';
+    this.postalCode = '';
+    this.phoneNumber = '';
+    this.sessionInterest = 'Sales Cloud';
+    this.companyName = '';
+    this.foodPreference = 'Non-Veg';
+    this.tShirtSize = 'Medium';
+    this.designation = '';
+    this.companySize = '1 - 50';
+    this.paymentPageLink = '';
+    this.trailblazerId = '';
+    this.linkedinId = '';
+    this.message = '';
+    this.agreement = false;
+  }
 
   connectedCallback() {
     this.loadTickets();

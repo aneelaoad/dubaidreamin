@@ -17,9 +17,9 @@ import EVENT_ID_LMS from '@salesforce/messageChannel/EventIDMessageChannel__c';
 import { publish, subscribe, MessageContext } from 'lightning/messageService';
 import fetchCouponId from '@salesforce/apex/DubaiRSVPController.fetchCouponId';
 
-export default class Dd_RSVP_Section extends LightningElement {
+export default class DubaiRSVPSection extends LightningElement {
   speakersLink = '/s/speakers';
-  thankYouLink = window.location.href + 'thankyou';
+  thankYouLink = window.location.href + 'thank-you-attendee';
 
   selectedEventId;
   quantity = 0;
@@ -42,16 +42,22 @@ export default class Dd_RSVP_Section extends LightningElement {
   isPreviousButtonVisible = true;
   showAgreementCheckbox=false
   showPromoButton=false
+  showWarning = false;
+  noteMessage = false
+  showInActivePromoMessage = false;
+  showInValidPromoMessage = false;
+  showAppliedPromoMessage=false;
+  disableApplyAction = false;
+
 
 
 
   // ----attendee info----
   nextButtonClickCount = 0;
-  pageCount=1
+
   allAttendeesData = [];
-  couponId;
   attendeeId
-  promoCode=''
+  pageCount=1
   nextAttendeeId = 1;
   firstName = '';
   lastName = '';
@@ -84,7 +90,12 @@ export default class Dd_RSVP_Section extends LightningElement {
   tShirtSizePickList;
   companySizePickList;
 
-  currentFormIndex = 1;
+  // -----promo details----
+  couponId;
+  promoActivationDate
+  promoExpiryDate
+  promoCode=''
+
 
   @wire(MessageContext)
   messageContext
@@ -277,7 +288,7 @@ export default class Dd_RSVP_Section extends LightningElement {
 
 
   toggleCheckOut() {
-    this.pageCount=1
+this.pageCount=1
     if (Object.keys(this.ticketsWithQuantity).length > 0) {
       let attendeeForm = this.template.querySelector('.attendee-form');
       let ticketForm = this.template.querySelector('.ticket_table_flShow');
@@ -335,6 +346,7 @@ export default class Dd_RSVP_Section extends LightningElement {
   }
   handleNextButton() {
     this.pageCount++
+
     if (this.nextButtonClickCount < this.quantity) {
 
       this.pushFormData();
@@ -357,6 +369,7 @@ export default class Dd_RSVP_Section extends LightningElement {
 
   handlePrevousButton() {
     this.pageCount--
+
     if (this.nextButtonClickCount > 0) {
       console.log('this.nextButtonClickCount: ', this.nextButtonClickCount);
 
@@ -436,65 +449,62 @@ export default class Dd_RSVP_Section extends LightningElement {
     this.promoCode = event.target.value;
 }
 
+handleApplyPromo(){
+ 
+    this.showInActivePromoMessage = false;
+    this.showInValidPromoMessage = false;
+    this.showAppliedPromoMessage = false;
+    this.disableApplyAction = true;
 
-  handleApplyPromo(){
-   
-    fetchCouponId({ promoCode: this.promoCode })
-    .then(result => {
-      // Handle the result here
-      console.log('Coupon ID:', result);
-      if (result) {
-          // If coupon ID is retrieved, apply discount
-          this.ticketsWithQuantity.forEach(ticket => {
-              let discountAmount = ticket.ticketPrice * 0.1;
-              let totalDiscountAmount = discountAmount * ticket.quantity;
+  fetchCouponId({ promoCode: this.promoCode })
+  .then(result => {
+     if (result) {
+      if(result.isActive){
+        this.showAppliedPromoMessage = true
 
-              ticket.discountAmount = parseFloat(totalDiscountAmount.toFixed(3));
-              ticket.totalPrice =  parseFloat(((ticket.ticketPrice - discountAmount) * ticket.quantity).toFixed(3));
-          });
-          this.ticketsWithQuantity = [...this.ticketsWithQuantity];
-          console.log('this.ticketsWithQuantity: ', JSON.stringify(this.ticketsWithQuantity));
-          this.couponId=result;
-          this.dispatchEvent(
-            new ShowToastEvent({
-              title: 'Applied',
-              message: 'Promo code successfully  applied! ',
-              variant: 'info'
-            })
-          );
-      } else {
-          // Handle case when promo code is not matched
-          window.alert('Promo code is not matched or invalid');
-          // You can display a message to the user or take any other appropriate action
-      }
-  })
-  .catch(error => {
-    
-      window.alert('Promo code is not matched or invalid');
-
-  });
-    // .then(result => {
-    //     // Handle the result here
-    //     console.log('Coupon ID:', result);
-    //     this.couponId = result;
-
-    //     this.ticketsWithQuantity.forEach(ticket => {
-    //       let discountAmount = ticket.ticketPrice * 0.1;
-    //       let totalDiscountAmount = discountAmount*ticket.quantity;
-  
-    //       ticket.discountAmount=totalDiscountAmount;
-    //       ticket.totalPrice = (ticket.ticketPrice - discountAmount) *ticket.quantity;
-
-    //   });
-    //   this.ticketsWithQuantity = [...this.ticketsWithQuantity];
-    //   console.log('this.ticketsWithQuantity', JSON.stringify(this.ticketsWithQuantity));
+        this.couponId = result.couponId;
       
-    // })
-    // .catch(error => {
-    //     // Handle any errors here
-    //     console.error('Error fetching coupon ID:', error);
-    // });
-  }
+       
+           this.ticketsWithQuantity.forEach(ticket => {
+              //  let discountAmount = ticket.ticketPrice * 0.1;
+              let discountAmount = parseInt(ticket.ticketPrice) * (Number(result.discountPercentage) / 100);
+
+               let totalDiscountAmount = discountAmount * ticket.quantity;
+ 
+               ticket.discountAmount = parseFloat(totalDiscountAmount.toFixed(3));
+               ticket.totalDiscountedPrice = parseFloat(((ticket.ticketPrice - discountAmount) * ticket.quantity).toFixed(3));           });
+           this.ticketsWithQuantity = [...this.ticketsWithQuantity];
+         
+           
+           this.dispatchEvent(
+             new ShowToastEvent({
+               title: result.promoCode+' applied',
+               message: 'Promo code successfully  applied! ',
+               variant: 'info'
+             })
+           );
+       } 
+
+       else{
+        this.showInActivePromoMessage = true
+        this.showInValidPromoMessage = false
+        this.showAppliedPromoMessage = false
+       }
+
+      }
+      this.disableApplyAction = false;
+})
+.catch(error => {
+  
+  this.showInValidPromoMessage = true
+  this.showInActivePromoMessage = false
+  this.showAppliedPromoMessage = false
+  this.disableApplyAction = false;
+
+});
+
+}
+
   handlePayNow() {
     const inputFields = this.template.querySelectorAll('input[required], select[required], textarea[required]');
     const checkboxField = this.template.querySelector('input[type="checkbox"][required]');
